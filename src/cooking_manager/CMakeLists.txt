@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(cooker_manage)
+project(cooking_manager)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -194,6 +194,10 @@ include_directories(
 #############
 ## Testing ##
 #############
+
+if (CATKIN_ENABLE_TESTING)
+find_package(rostest REQUIRED)
+endif()
 
 ## Add gtest based cpp test target and link libraries
 # catkin_add_gtest(${PROJECT_NAME}-test test/test_cooker_manage.cpp)
