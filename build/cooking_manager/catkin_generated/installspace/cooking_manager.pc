@@ -1,8 +1,0 @@
-prefix=/home/asmar/UNIGE/COGAR/COGAR_Assignment/install
-
-Name: cooking_manager
-Description: Description of cooking_manager
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
