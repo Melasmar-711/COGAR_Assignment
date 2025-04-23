@@ -46,6 +46,7 @@ find_package(catkin REQUIRED COMPONENTS
 ##     and list every .msg/.srv/.action file to be processed
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
+catkin_python_setup()
 
 ## Generate messages in the 'msg' folder
 # add_message_files(
@@ -163,7 +164,10 @@ include_directories(
 #############
 ## Install ##
 #############
-
+install(PROGRAMS 
+  scripts/recipe_tracker.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}/../python3/dist-packages/cooking_manager
+)
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
@@ -201,7 +205,6 @@ include_directories(
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
-
 #############
 ## Testing ##
 #############
@@ -217,4 +220,5 @@ include_directories(
 
 if (CATKIN_ENABLE_TESTING)
 find_package(rostest REQUIRED)
+add_rostest(tests/test_recipe_tracking.test)
 endif()	

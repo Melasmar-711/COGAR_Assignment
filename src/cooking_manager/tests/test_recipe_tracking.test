@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="cooking_manager" name="recipe_tracker" type="recipe_tracker.py" />
+    <test test-name="test_recipe_tracking" pkg="cooking_manager" type="test_recipe_tracking.py"/>
+</launch>

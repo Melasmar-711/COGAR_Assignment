@@ -3,7 +3,7 @@
 from cooking_manager.msg import RecipeStep
 from controller.msg import SystemState
 from typing import List, Optional
-
+import rospy
 
 class RecipeTracker:
     
@@ -38,3 +38,6 @@ class RecipeTracker:
     def get_full_recipe(self) -> List[RecipeStep]:
         return None
 
+if __name__ == "__main__":
+    rospy.init_node('add_two_ints_server')
+    rospy.spin()
