@@ -13,23 +13,30 @@ class HumanCommandManager:
     # --- Subscriber Callbacks ---
     def _verbal_callback(self, msg):
         """Store raw verbal command."""
-        self._last_verbal_cmd = msg.data
+        self._last_verbal_cmd = None
+        return None
+
 
     def _state_callback(self, msg):
         """Update system state (e.g., recipe step, urgency)."""
+        return None
+
 
     def _action_callback(self, msg):
         """Track current robot action."""
+        return None
 
     # --- Core Methods ---
     def _parse_command(self, voice):
         """Convert raw speech-to-text output to structured command."""
         # Example: "Pass me the salt" → {"action": "pass", "object": "salt"}
-        return {text}
+        return None
 
     def _represent_command(self, parsed_cmd):
         """  """
+        return None
 
     def _validate_command(self, parsed_cmd):
         """Check if command aligns with system state and current action."""
+        return None
        
