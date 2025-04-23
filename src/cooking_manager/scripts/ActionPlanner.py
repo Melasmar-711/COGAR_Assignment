@@ -7,6 +7,7 @@ class ActionPlanner:
     def receive_inputs(self, current_step, valid_command):
         self.current_step = current_step
         self.valid_command = valid_command
+        return None
 
     # One function to decide and send/publish the current action
     def currnet_action(self):
