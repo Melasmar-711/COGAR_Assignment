@@ -1,4 +1,4 @@
-prefix=/home/abulanti/assign/install
+prefix=/home/asmar/UNIGE/COGAR/COGAR_Assignment/install
 
 Name: assignments
 Description: Description of assignments

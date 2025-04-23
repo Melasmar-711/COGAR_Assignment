@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/abulanti/assign/devel/share/roseus/ros/assignments/manifest.l"
-  "/home/abulanti/assign/devel/share/roseus/ros/assignments/srv/CheckJointState.l"
-  "/home/abulanti/assign/devel/share/roseus/ros/assignments/srv/Speaker.l"
+  "/home/asmar/UNIGE/COGAR/COGAR_Assignment/devel/share/roseus/ros/assignments/manifest.l"
+  "/home/asmar/UNIGE/COGAR/COGAR_Assignment/devel/share/roseus/ros/assignments/srv/CheckJointState.l"
+  "/home/asmar/UNIGE/COGAR/COGAR_Assignment/devel/share/roseus/ros/assignments/srv/Speaker.l"
   "CMakeFiles/assignments_generate_messages_eus"
 )
 

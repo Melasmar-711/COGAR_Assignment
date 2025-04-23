@@ -1,8 +1,8 @@
-# Install script for directory: /home/abulanti/assign/src
+# Install script for directory: /home/asmar/UNIGE/COGAR/COGAR_Assignment/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/abulanti/assign/install")
+  set(CMAKE_INSTALL_PREFIX "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -37,7 +37,12 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+# Set path to fallback-tool for dependency-resolution.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   
       if (NOT EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}")
         file(MAKE_DIRECTORY "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}")
@@ -47,101 +52,114 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
       endif()
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/abulanti/assign/install/_setup_util.py")
+   "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/abulanti/assign/install" TYPE PROGRAM FILES "/home/abulanti/assign/build/catkin_generated/installspace/_setup_util.py")
+  file(INSTALL DESTINATION "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install" TYPE PROGRAM FILES "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/_setup_util.py")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/abulanti/assign/install/env.sh")
+   "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/abulanti/assign/install" TYPE PROGRAM FILES "/home/abulanti/assign/build/catkin_generated/installspace/env.sh")
+  file(INSTALL DESTINATION "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install" TYPE PROGRAM FILES "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/env.sh")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/abulanti/assign/install/setup.bash;/home/abulanti/assign/install/local_setup.bash")
+   "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/setup.bash;/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/abulanti/assign/install" TYPE FILE FILES
-    "/home/abulanti/assign/build/catkin_generated/installspace/setup.bash"
-    "/home/abulanti/assign/build/catkin_generated/installspace/local_setup.bash"
+  file(INSTALL DESTINATION "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install" TYPE FILE FILES
+    "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/setup.bash"
+    "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/local_setup.bash"
     )
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/abulanti/assign/install/setup.sh;/home/abulanti/assign/install/local_setup.sh")
+   "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/setup.sh;/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/abulanti/assign/install" TYPE FILE FILES
-    "/home/abulanti/assign/build/catkin_generated/installspace/setup.sh"
-    "/home/abulanti/assign/build/catkin_generated/installspace/local_setup.sh"
+  file(INSTALL DESTINATION "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install" TYPE FILE FILES
+    "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/setup.sh"
+    "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/local_setup.sh"
     )
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/abulanti/assign/install/setup.zsh;/home/abulanti/assign/install/local_setup.zsh")
+   "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/setup.zsh;/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/abulanti/assign/install" TYPE FILE FILES
-    "/home/abulanti/assign/build/catkin_generated/installspace/setup.zsh"
-    "/home/abulanti/assign/build/catkin_generated/installspace/local_setup.zsh"
+  file(INSTALL DESTINATION "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install" TYPE FILE FILES
+    "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/setup.zsh"
+    "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/local_setup.zsh"
     )
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/abulanti/assign/install/.rosinstall")
+   "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/abulanti/assign/install" TYPE FILE FILES "/home/abulanti/assign/build/catkin_generated/installspace/.rosinstall")
+  file(INSTALL DESTINATION "/home/asmar/UNIGE/COGAR/COGAR_Assignment/install" TYPE FILE FILES "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/catkin_generated/installspace/.rosinstall")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/abulanti/assign/build/gtest/cmake_install.cmake")
-  include("/home/abulanti/assign/build/assignments/cmake_install.cmake")
+  include("/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/gtest/cmake_install.cmake")
+  include("/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/assignments/cmake_install.cmake")
+  include("/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/cooking_manager/cmake_install.cmake")
 
-endif()
-
-if(CMAKE_INSTALL_COMPONENT)
-  set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
-else()
-  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/abulanti/assign/build/${CMAKE_INSTALL_MANIFEST}"
+if(CMAKE_INSTALL_LOCAL_ONLY)
+  file(WRITE "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
+endif()
+if(CMAKE_INSTALL_COMPONENT)
+  if(CMAKE_INSTALL_COMPONENT MATCHES "^[a-zA-Z0-9_.+-]+$")
+    set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
+  else()
+    string(MD5 CMAKE_INST_COMP_HASH "${CMAKE_INSTALL_COMPONENT}")
+    set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INST_COMP_HASH}.txt")
+    unset(CMAKE_INST_COMP_HASH)
+  endif()
+else()
+  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  file(WRITE "/home/asmar/UNIGE/COGAR/COGAR_Assignment/build/${CMAKE_INSTALL_MANIFEST}"
+     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
+endif()

@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/abulanti/assign/devel/share/common-lisp/ros/assignments/srv/CheckJointState.lisp"
-  "/home/abulanti/assign/devel/share/common-lisp/ros/assignments/srv/Speaker.lisp"
+  "/home/asmar/UNIGE/COGAR/COGAR_Assignment/devel/share/common-lisp/ros/assignments/srv/CheckJointState.lisp"
+  "/home/asmar/UNIGE/COGAR/COGAR_Assignment/devel/share/common-lisp/ros/assignments/srv/Speaker.lisp"
   "CMakeFiles/assignments_generate_messages_lisp"
 )
 

@@ -1,2 +1,2 @@
-assignments
--DCATKIN_DEVEL_PREFIX=/home/abulanti/assign/devel -DCMAKE_INSTALL_PREFIX=/home/abulanti/assign/install -G Unix Makefiles
+assignments:cooking_manager
+-DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCATKIN_DEVEL_PREFIX=/home/asmar/UNIGE/COGAR/COGAR_Assignment/devel -DCMAKE_INSTALL_PREFIX=/home/asmar/UNIGE/COGAR/COGAR_Assignment/install -G Unix Makefiles
