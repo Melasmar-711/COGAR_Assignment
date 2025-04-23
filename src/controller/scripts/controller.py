@@ -2,14 +2,14 @@ class ControllerSubsystem:
     def __init__(self):
         """Initialize subscribers and publishers"""
         # Subscribers
-        rospy.Subscriber("/object_location", ObjectLocation, self._object_location_callback)
+        """ rospy.Subscriber("/object_location", ObjectLocation, self._object_location_callback)
         rospy.Subscriber("/map", Map, self._map_callback)
         rospy.Subscriber("/current_force", ForceData, self._force_callback)
         
         # Publishers
         self._motor_cmd_pub = rospy.Publisher("/motor_commands", MotorCommand, queue_size=10)
         self._action_state_pub = rospy.Publisher("/action_state", ActionState, queue_size=10)
-
+"""
     # --- Callbacks ---
     def _object_location_callback(self, msg: ObjectLocation) -> None:
         """Store latest object position
@@ -35,12 +35,14 @@ class ControllerSubsystem:
         Input: None (uses internal object_location state)
         Output: (ActionState, [setpoints]) - Current action type and target positions
         """
+        return None
 
     def _trajectory_manager(self, setpoints: List[Point], map: Map) -> Trajectory:
         """Generate collision-free path
         Input: [setpoints], environment Map
         Output: Trajectory (path waypoints)
         """
+        return None
 
     def _pid_controller(self, trajectory: Trajectory, 
                        current_pose: Pose, 
@@ -49,6 +51,7 @@ class ControllerSubsystem:
         Input: (Trajectory, current Pose, ForceData)
         Output: MotorCommand (velocity, torque for each joint)
         """
+        return None
 
     # --- Main Loop ---
     def run(self) -> None:
@@ -56,3 +59,4 @@ class ControllerSubsystem:
         Input: None
         Output: None (publishes to /motor_commands and /action_state)
         """
+        return None
