@@ -48,10 +48,36 @@ class TestRecipeTracker(unittest.TestCase):
         recipe_step = self.recipe_tracker.step_tracker(self.idle_system_state)
 
         self.assertEqual(recipe_step, parsed_steps["steps"][1], 
-		                "Second step doesn't match")
+		                "Step is not valid")
     
 
+    def test_recipe_tracker_when_execution(self):
+        parsed_steps = {
+            "steps": 
+            [
+                "pick the pan and put it on the stove",
+                "add oil on the pan"
+            ]
+        }
+        self.recipe_tracker.parse_recipe(parsed_steps)
+        recipe_step = self.recipe_tracker.step_tracker(self.idle_system_state)
 
+        self.assertEqual(recipe_step, parsed_steps["steps"][0], 
+		                "Step is not valid")
+    
+    def test_recipe_tracker_when_failure(self):
+        parsed_steps = {
+            "steps": 
+            [
+                "pick the pan and put it on the stove",
+                "add oil on the pan"
+            ]
+        }
+        self.recipe_tracker.parse_recipe(parsed_steps)
+        recipe_step = self.recipe_tracker.step_tracker(self.idle_system_state)
+
+        self.assertEqual(recipe_step, parsed_steps["steps"][0], 
+		                "Step is not valid")
             
             
 
