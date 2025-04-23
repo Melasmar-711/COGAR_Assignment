@@ -8,7 +8,10 @@ project(cooking_manager)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  std_msgs
+  message_generation
   rospy
+  controller
 )
 
 ## System dependencies are found with CMake's conventions
@@ -50,6 +53,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   Message1.msg
 #   Message2.msg
 # )
+add_message_files(
+  FILES
+  RecipeStep.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -70,6 +77,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   DEPENDENCIES
 #   std_msgs  # Or other packages containing msgs
 # )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -105,6 +116,7 @@ catkin_package(
 #  LIBRARIES cooking_manager
 #  CATKIN_DEPENDS rospy
 #  DEPENDS system_lib
+CATKIN_DEPENDS message_runtime std_msgs controller
 )
 
 ###########

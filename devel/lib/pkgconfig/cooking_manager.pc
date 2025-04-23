@@ -1,8 +1,8 @@
-prefix=/home/asmar/UNIGE/COGAR/COGAR_Assignment/devel
+prefix=/home/ts/Cog/COGAR_Assignment/devel
 
 Name: cooking_manager
 Description: Description of cooking_manager
 Version: 0.0.0
-Cflags: 
+Cflags: -I/home/ts/Cog/COGAR_Assignment/devel/include
 Libs: -L${prefix}/lib 
-Requires: 
+Requires: message_runtime std_msgs controller

@@ -1,6 +1,14 @@
+#!/usr/bin/env python3
+
+from cooking_manager.msg import RecipeStep
+from controller.msg import SystemState
+from typing import List, Optional
+
+
 class RecipeTracker:
     
-
+    def __init__(self):
+        pass
     # Parses raw recipe text and initializes the internal structure
     def parse_recipe(self, raw_text: str) -> List[RecipeStep]:
         
