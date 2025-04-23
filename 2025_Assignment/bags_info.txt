@@ -1,0 +1,139 @@
+path:        2025_Assignment/arm_jointstate.bag
+duration:    44.0s
+messages:    2206
+types:       control_msgs/JointTrajectoryControllerState [10817c60c2486ef6b33e97dcd87f4474]
+topics:      /arm_right_controller/state   2206 msgs    : control_msgs/JointTrajectoryControllerState
+---
+path:        2025_Assignment/depth_raw.bag
+duration:    10.4s
+messages:    30
+types:       sensor_msgs/Image [060021388200f6f0f447d0fcd9c64743]
+topics:      /xtion/depth/image_raw   30 msgs    : sensor_msgs/Image
+---
+path:        2025_Assignment/force_sensor.bag
+duration:    11.4s
+messages:    576
+types:       geometry_msgs/WrenchStamped [d78d3cb249ce23087ade7e7d0c40cfa7]
+topics:      /wrist_right_ft   576 msgs    : geometry_msgs/WrenchStamped
+---
+path:        2025_Assignment/odometry.bag
+duration:    26.0s
+size:        997.2 KB
+messages:    1301
+types:       nav_msgs/Odometry [cd5e73d190d741a2f92e81eda573aca7]
+topics:      /mobile_base_controller/odom   1301 msgs    : nav_msgs/Odometry
+---
+path:        2025_Assignment/rgb_raw.bag
+duration:    18.4s
+messages:    75
+types:       sensor_msgs/Image [060021388200f6f0f447d0fcd9c64743]
+topics:      /xtion/rgb/image_raw   75 msgs    : sensor_msgs/Image
+---
+path:        2025_Assignment/scan_lidar.bag
+duration:    18.2s
+messages:    274
+types:       sensor_msgs/LaserScan [90c7ef2dc6895d81024acba2ac42f369]
+topics:      /scan   274 msgs    : sensor_msgs/LaserScan
+---
+path:        2025_Assignment/sonar.bag
+duration:    20.6s
+size:        74.7 KB
+messages:    609
+types:       sensor_msgs/Range [c005c34273dc426c67a020a87bc24148]
+topics:      /sonar_base   609 msgs    : sensor_msgs/Range
+
+
+
+
+1- arm_jointstate.bag
+
+
+topic name: /arm_right_controller/state
+Type: control_msgs/JointTrajectoryControllerState
+
+
+header: 
+  seq: 379609
+  stamp: 
+    secs: 1744123089
+    nsecs: 815561925
+  frame_id: ''
+joint_names: [arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint,
+  arm_right_6_joint, arm_right_7_joint]
+desired: 
+  positions: [-1.1, 1.4679, 2.714, 1.7095, -1.5707999999999998, 1.3898, 0.0]
+  velocities: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  accelerations: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  effort: []
+  time_from_start: 
+    secs: 0
+    nsecs:         0
+actual: 
+  positions: [-1.1000389266824158, 1.4678382858028196, 2.7139782656330516, 1.7094943872483088, -1.570799006423675, 1.3898050604310044, -0.00011771653068326504]
+  velocities: [-0.0002008697775693919, -4.57607267618274e-05, -8.924922652370912e-08, -1.2015381553804091e-05, -1.6273807502299417e-08, 0.0001612515478868077, -0.0001612515717525752]
+  accelerations: []
+  effort: []
+  time_from_start: 
+    secs: 0
+    nsecs:         0
+error: 
+  positions: [3.89266824161183e-05, 6.171419718015159e-05, 2.1734366947967487e-05, 5.612751690975415e-06, -9.935763252144625e-07, -5.060431004011434e-06, 0.00011771653068315402]
+  velocities: [0.0002008697775693919, 4.57607267618274e-05, 8.924922652370912e-08, 1.2015381553804091e-05, 1.6273807502299417e-08, -0.0001612515478868077, 0.0001612515717525752]
+  accelerations: []
+  effort: []
+  time_from_start: 
+    secs: 0
+    nsecs:
+
+
+2- sonar.bag
+
+20 seconds
+Type: sensor_msgs/Range
+
+No messages
+
+header: 
+  seq: 220568
+  stamp: 
+    secs: 1744122938
+    nsecs: 474815918
+  frame_id: "base_sonar_03_link"
+radiation_type: 0
+field_of_view: 0.5
+min_range: 0.019999999553
+max_range: 1.0
+range: 1.0
+
+
+3- depth_raw.bag
+
+time: 10 seconds
+Type: sensor_msgs/Image
+topic: /xtion/depth/image_raw
+
+
+header: 
+  seq: 220568
+  stamp: 
+    secs: 1744122938
+    nsecs: 474815918
+  frame_id: "base_sonar_03_link"
+radiation_type: 0
+field_of_view: 0.5
+min_range: 0.019999999553
+max_range: 1.0
+range: 1.0
+
+
+
+
+
+4- 
+
+
+
+
+
+
+
