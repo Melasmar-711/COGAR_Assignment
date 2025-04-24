@@ -8,79 +8,53 @@ from scripts.recipe_tracker import RecipeTracker
 
 class TestRecipeTracker(unittest.TestCase):
     @classmethod
-    def setUpClass(cls) -> None:
-        cls.recipe_tracker = RecipeTracker()
+    def setUpClass(self) -> None:
+        self.recipe_tracker = RecipeTracker()
+        self.dummy_recipe = {
+            "steps": [
+                "pick the pan and put it on the stove",
+                "add oil on the pan"
+            ]
+        }
+        self.dummy_recipe_text = json.dumps(self.dummy_recipe)
         # cls.recipe_text_service_proxy = rospy.ServiceProxy('recipe_text', RecipeText)
-        # self.idle_system_state = SystemState("IDLE")
-        # self.executing_system_state = SystemState("EXECUTING")
-        # self.failure_system_state = SystemState("FAILURE")
+        self.idle_system_state = SystemState("IDLE")
+        self.executing_system_state = SystemState("EXECUTING")
+        self.failure_system_state = SystemState("FAILURE")
         # rospy.wait_for_service("recipe_text")
-        
+    def setUp(self):
+        self.recipe_tracker = RecipeTracker()
+
     def test_parse_recipe(self):
-        self.assertTrue(True)
-        # test_recipe = {
-        #     "steps": [
-        #         "pick the pan and put it on the stove",
-        #         "add oil on the pan"
-        #     ]
-        # }
 
-        # # Convert to proper JSON string
-        # recipe_text = json.dumps(test_recipe)
-		
-        # recipe_parsed = self.recipe_tracker.parse_recipe(recipe_text)
+        recipe_parsed = self.recipe_tracker.parse_recipe(self.dummy_recipe_text)
 
-        # self.assertIsNotNone(recipe_parsed, "Recipe parsing returned None")
-        # self.assertEqual(len(recipe_parsed.steps), 2, "Incorrect number of steps parsed")
-        # self.assertEqual(recipe_parsed.steps[0], test_recipe["steps"][0], 
-        #                 "First step doesn't match")
-        # self.assertEqual(recipe_parsed.steps[1], test_recipe["steps"][1], 
-		#                 "Second step doesn't match")
+        self.assertIsNotNone(recipe_parsed, "Recipe parsing returned None")
+        self.assertEqual(len(recipe_parsed.steps), 2, "Incorrect number of steps parsed")
+        self.assertEqual(recipe_parsed.steps[0], self.dummy_recipe["steps"][0], 
+                        "First step doesn't match")
+        self.assertEqual(recipe_parsed.steps[1], self.dummy_recipe["steps"][1], 
+		                "Second step doesn't match")
         
-    # def test_recipe_tracker_when_idle(self):
-    #     parsed_steps = {
-    #         "steps": 
-    #         [
-    #             "pick the pan and put it on the stove",
-    #             "add oil on the pan"
-    #         ]
-    #     }
-    #     self.recipe_tracker.parse_recipe(parsed_steps)
-    #     recipe_step = self.recipe_tracker.step_tracker(self.idle_system_state)
+    def test_recipe_tracker_when_idle(self):
+        self.recipe_tracker.update_progress(self.idle_system_state)
 
-    #     self.assertEqual(recipe_step, parsed_steps["steps"][1], 
-	# 	                "Step is not valid")
+        self.assertEqual(self.recipe_tracker.current_step(), self.dummy_recipe["steps"][1], 
+		                "Step is not valid")
+        
+    def test_recipe_tracker_when_execution(self):
+        self.recipe_tracker.update_progress(self.executing_system_state)
+
+        self.assertEqual(self.recipe_tracker.current_step(), self.dummy_recipe["steps"][0], 
+		                "Step is not valid")
+    
+    def test_recipe_tracker_when_failure(self):
+        self.recipe_tracker.update_progress(self.failure_system_state)
+
+        self.assertEqual(self.recipe_tracker.current_step(), self.dummy_recipe["steps"][0], 
+		                "Step is not valid")
     
 
-    # def test_recipe_tracker_when_execution(self):
-    #     parsed_steps = {
-    #         "steps": 
-    #         [
-    #             "pick the pan and put it on the stove",
-    #             "add oil on the pan"
-    #         ]
-    #     }
-    #     self.recipe_tracker.parse_recipe(parsed_steps)
-    #     recipe_step = self.recipe_tracker.step_tracker(self.idle_system_state)
-
-    #     self.assertEqual(recipe_step, parsed_steps["steps"][0], 
-	# 	                "Step is not valid")
-    
-    # def test_recipe_tracker_when_failure(self):
-    #     parsed_steps = {
-    #         "steps": 
-    #         [
-    #             "pick the pan and put it on the stove",
-    #             "add oil on the pan"
-    #         ]
-    #     }
-    #     self.recipe_tracker.parse_recipe(parsed_steps)
-    #     recipe_step = self.recipe_tracker.step_tracker(self.idle_system_state)
-
-    #     self.assertEqual(recipe_step, parsed_steps["steps"][0], 
-	# 	                "Step is not valid")
-            
-            
 
 if __name__ == '__main__':
     import rostest
