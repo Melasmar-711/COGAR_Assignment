@@ -11,7 +11,9 @@ class TestActionPlanning(unittest.TestCase):
 
         
 
-    def test_parsing_step(self): # the default number of numbers used is 10
+    def test_parsing_step(self): 
+    	
+    	dummy_steps=["cut the onions","boil the water"]
         
 
 
