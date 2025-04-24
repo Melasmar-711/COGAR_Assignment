@@ -4,12 +4,12 @@ import unittest
 import json
 # from cooking_manager.srv import RecipeText
 from controller.msg import SystemState
-from cooking_manager import recipe_tracker
+from scripts.recipe_tracker import RecipeTracker
 
 class TestRecipeTracker(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.recipe_tracker = recipe_tracker.RecipeTracker()
+        cls.recipe_tracker = RecipeTracker()
         # cls.recipe_text_service_proxy = rospy.ServiceProxy('recipe_text', RecipeText)
         # self.idle_system_state = SystemState("IDLE")
         # self.executing_system_state = SystemState("EXECUTING")

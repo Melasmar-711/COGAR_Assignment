@@ -1,4 +1,4 @@
-prefix=/home/ts/Cog/COGAR_Assignment/devel
+prefix=/home/projects/COGAR_Assignment/devel
 
 Name: perception
 Description: Description of perception

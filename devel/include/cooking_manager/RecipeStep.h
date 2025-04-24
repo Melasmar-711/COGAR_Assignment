@@ -87,16 +87,6 @@ namespace message_traits
 
 
 template <class ContainerAllocator>
-struct IsMessage< ::cooking_manager::RecipeStep_<ContainerAllocator> >
-  : TrueType
-  { };
-
-template <class ContainerAllocator>
-struct IsMessage< ::cooking_manager::RecipeStep_<ContainerAllocator> const>
-  : TrueType
-  { };
-
-template <class ContainerAllocator>
 struct IsFixedSize< ::cooking_manager::RecipeStep_<ContainerAllocator> >
   : FalseType
   { };
@@ -104,6 +94,16 @@ struct IsFixedSize< ::cooking_manager::RecipeStep_<ContainerAllocator> >
 template <class ContainerAllocator>
 struct IsFixedSize< ::cooking_manager::RecipeStep_<ContainerAllocator> const>
   : FalseType
+  { };
+
+template <class ContainerAllocator>
+struct IsMessage< ::cooking_manager::RecipeStep_<ContainerAllocator> >
+  : TrueType
+  { };
+
+template <class ContainerAllocator>
+struct IsMessage< ::cooking_manager::RecipeStep_<ContainerAllocator> const>
+  : TrueType
   { };
 
 template <class ContainerAllocator>

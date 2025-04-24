@@ -164,10 +164,7 @@ include_directories(
 #############
 ## Install ##
 #############
-install(PROGRAMS 
-  scripts/recipe_tracker.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}/../python3/dist-packages/cooking_manager
-)
+
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 

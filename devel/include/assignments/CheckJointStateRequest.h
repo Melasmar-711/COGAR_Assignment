@@ -99,16 +99,6 @@ namespace message_traits
 
 
 template <class ContainerAllocator>
-struct IsMessage< ::assignments::CheckJointStateRequest_<ContainerAllocator> >
-  : TrueType
-  { };
-
-template <class ContainerAllocator>
-struct IsMessage< ::assignments::CheckJointStateRequest_<ContainerAllocator> const>
-  : TrueType
-  { };
-
-template <class ContainerAllocator>
 struct IsFixedSize< ::assignments::CheckJointStateRequest_<ContainerAllocator> >
   : FalseType
   { };
@@ -116,6 +106,16 @@ struct IsFixedSize< ::assignments::CheckJointStateRequest_<ContainerAllocator> >
 template <class ContainerAllocator>
 struct IsFixedSize< ::assignments::CheckJointStateRequest_<ContainerAllocator> const>
   : FalseType
+  { };
+
+template <class ContainerAllocator>
+struct IsMessage< ::assignments::CheckJointStateRequest_<ContainerAllocator> >
+  : TrueType
+  { };
+
+template <class ContainerAllocator>
+struct IsMessage< ::assignments::CheckJointStateRequest_<ContainerAllocator> const>
+  : TrueType
   { };
 
 template <class ContainerAllocator>
