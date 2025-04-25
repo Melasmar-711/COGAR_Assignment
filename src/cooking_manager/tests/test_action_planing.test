@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="cooking_manager" name="action_planner" type="action_planner.py" />
+    <test test-name="test_action_planing" pkg="cooking_manager" type="test_action_planing.py"/>
+</launch>
