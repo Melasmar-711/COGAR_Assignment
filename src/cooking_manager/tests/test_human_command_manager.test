@@ -1,4 +1,5 @@
 <launch>
-
-
+    <node pkg="cooking_manager" name="human_command_manager" type="human_command_manager.py" />
+    <test test-name="test_human_command_manager" pkg="cooking_manager" type="test_human_command_manager.py"/>
 </launch>
+
