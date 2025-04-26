@@ -10,7 +10,7 @@ class TestHumanCommandManager(unittest.TestCase):
         self.received_cmds = []
         self.verbal_pub = rospy.Publisher("/verbal_command", String, queue_size=10)
         self.state_pub = rospy.Publisher("/system_state", String, queue_size=10)
-        self.action_pub = rospy.Publisher("/current_actions", String, queue_size=10)
+        self.action_pub = rospy.Publisher("/action_sequence", String, queue_size=10)
         rospy.sleep(1)
         rospy.Subscriber("/valid_command", String, self._cmd_callback)
 

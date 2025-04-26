@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import rospy
 from std_msgs.msg import String
+from controller.msg import SystemState
 
 class HumanCommandManager:
     def __init__(self):
@@ -11,8 +12,8 @@ class HumanCommandManager:
 
         # Subscribers
         rospy.Subscriber("/verbal_command", String, self.verbal_callback)
-        rospy.Subscriber("/system_state", String, self.state_callback)
-        rospy.Subscriber("/current_actions", String, self.actions_callback)
+        rospy.Subscriber("/system_state", SystemState, self.state_callback)
+        rospy.Subscriber("/action_sequence", String, self.actions_callback)
 
         # Publisher
         self._valid_pub = rospy.Publisher("/valid_command", String, queue_size=1)
@@ -24,7 +25,7 @@ class HumanCommandManager:
         self.evaluate_and_publish()
 
     def state_callback(self, msg):
-        self._current_state = msg.data.upper()
+        self._current_state = msg.state.upper()
         rospy.loginfo(f"[STATE] Updated: {self._current_state}")
         self.evaluate_and_publish()
 

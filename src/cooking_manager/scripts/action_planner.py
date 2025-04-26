@@ -50,10 +50,9 @@ class ActionPlanner:
 
    
     def step_parsing(self, current_step):
-
         '''parse the current step and retrieve the corresponding action sequence'''
         rospy.loginfo(f"parsing: {current_step}")
-        self.currnet_actions_sequence=self.steps_to_action_mapping[current_step]
+        self.currnet_actions_sequence=self.steps_to_action_mapping.get(current_step,None)
 
 
     # One function to decide and send/publish the current action
