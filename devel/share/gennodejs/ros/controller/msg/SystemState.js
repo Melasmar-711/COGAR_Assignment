@@ -48,7 +48,7 @@ class SystemState {
 
   static getMessageSize(object) {
     let length = 0;
-    length += object.state.length;
+    length += _getByteLength(object.state);
     return length + 4;
   }
 

@@ -48,7 +48,7 @@ class RecipeStep {
 
   static getMessageSize(object) {
     let length = 0;
-    length += object.step.length;
+    length += _getByteLength(object.step);
     return length + 4;
   }
 
