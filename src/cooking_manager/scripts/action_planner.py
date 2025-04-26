@@ -46,8 +46,8 @@ class ActionPlanner:
         # Client to send the new  action_sequence as  a request to controller
         # wait for the action_sequence_to_controller service to be available
 
-        #rospy.wait_for_service('action_sequence_to_controller')
-        #self.action_sequence_client_to_controller = rospy.ServiceProxy('action_sequence_to_controller', SendActionSeq)
+        rospy.wait_for_service('action_sequence_to_controller')
+        self.action_sequence_client_to_controller = rospy.ServiceProxy('action_sequence_to_controller', SendActionSeq)
 
 
         
@@ -57,8 +57,9 @@ class ActionPlanner:
 
         # Client to send the new  action_sequence as  a request to controller
         #wait for the action_sequence_to_command_monitor service to be available
-        self.action_sequence_client_to_command_monitor = rospy.ServiceProxy('action_sequence_to_command_monitor', SendActionSeq)
         rospy.wait_for_service('action_sequence_to_command_monitor')
+        self.action_sequence_client_to_command_monitor = rospy.ServiceProxy('action_sequence_to_command_monitor', SendActionSeq)
+
 
 
         self.steps_to_action_mapping = {"cut the onions": ["grab the onions urgent", "cut the onions not_urgent"],
