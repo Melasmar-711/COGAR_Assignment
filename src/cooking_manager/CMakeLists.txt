@@ -217,6 +217,7 @@ include_directories(
 if (CATKIN_ENABLE_TESTING)
 find_package(rostest REQUIRED)
 add_rostest(tests/test_recipe_tracking.test)
-add_rostest(tests/test_human_command_manager.test)
+add_rostest(test/test_action_planing.test)
+add_rostest(test/test_human_command_manager.test)
 
 endif()	
