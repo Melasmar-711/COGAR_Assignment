@@ -87,16 +87,6 @@ namespace message_traits
 
 
 template <class ContainerAllocator>
-struct IsFixedSize< ::controller::SystemState_<ContainerAllocator> >
-  : FalseType
-  { };
-
-template <class ContainerAllocator>
-struct IsFixedSize< ::controller::SystemState_<ContainerAllocator> const>
-  : FalseType
-  { };
-
-template <class ContainerAllocator>
 struct IsMessage< ::controller::SystemState_<ContainerAllocator> >
   : TrueType
   { };
@@ -104,6 +94,16 @@ struct IsMessage< ::controller::SystemState_<ContainerAllocator> >
 template <class ContainerAllocator>
 struct IsMessage< ::controller::SystemState_<ContainerAllocator> const>
   : TrueType
+  { };
+
+template <class ContainerAllocator>
+struct IsFixedSize< ::controller::SystemState_<ContainerAllocator> >
+  : FalseType
+  { };
+
+template <class ContainerAllocator>
+struct IsFixedSize< ::controller::SystemState_<ContainerAllocator> const>
+  : FalseType
   { };
 
 template <class ContainerAllocator>

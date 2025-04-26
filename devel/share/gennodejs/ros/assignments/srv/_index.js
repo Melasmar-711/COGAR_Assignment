@@ -1,10 +1,10 @@
 
 "use strict";
 
-let CheckJointState = require('./CheckJointState.js')
 let Speaker = require('./Speaker.js')
+let CheckJointState = require('./CheckJointState.js')
 
 module.exports = {
-  CheckJointState: CheckJointState,
   Speaker: Speaker,
+  CheckJointState: CheckJointState,
 };
