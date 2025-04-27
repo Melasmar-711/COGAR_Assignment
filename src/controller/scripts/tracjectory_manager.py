@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 
 
 import rospy
@@ -9,55 +11,58 @@ class trajectory_manager:
 
 
     def __init__(self):
-        rospy.init_node('trajectory_manager', anonymous=True)
+        rospy.init_node('trajectory_manager_', anonymous=True)
+        rospy.loginfo("trajectory_manager: node started")
 
         self.odom = Odometry()
         self.map_msg = OccupancyGrid()
-        self.check_joint_state = CheckJointStateRequest()
-
-
-
-        
+        self.check_joint_state = CheckJointStateRequest()    
         # Rate
         self.rate = rospy.Rate(10)
-
-        
 
 
         # Create service client to get the trajectory to follow
         self.client_recieve_set_points = rospy.Service('/send_set_points', CheckJointState,self.input_callback)
 
-
-
         # Create a service client to send the trajectory to the PID controller
+        # wait for the service to be available
+        rospy.loginfo("Waiting for /pid_get_trajectory service...")
+        rospy.wait_for_service('/pid_get_trajectory')
         self.client_trajectory_send = rospy.ServiceProxy('/pid_get_trajectory', CheckJointState)
-
-
-
 
 
         # Publishers
         self.map_sub= rospy.Subscriber('/slam/map', OccupancyGrid,self.map_callback)
         self.odom_sub = rospy.Subscriber('/slam/odom', Odometry, self.odom_callback)
 
-
-
         # make a service client to check if the position is reachable
         #wait for the service to be available
         rospy.loginfo("Waiting for /check_reachable_pose service...")
         rospy.wait_for_service('/check_reachable_pose')
+        rospy.loginfo("Service /check_reachable_pose is available")
+
+
         self.client_check_reachable_pose = rospy.ServiceProxy('/check_reachable_pose', CheckJointState)
 
 
     def input_callback(self, msg):
 
+        rospy.loginfo("trajectory_manager: recived new set points") 
         self.check_joint_state=msg
         sucess=self.client_check_reachable_pose(self.check_joint_state)
-        if sucess:
+        if sucess.success:
 
-            self.send_trajectory()
+            reached=self.send_trajectory()
+            if  reached.success:
+                rospy.loginfo("trajectory_manager: pid says pose reached successfully")
+                return CheckJointStateResponse(True)
+            else:
+                rospy.loginfo("trajectory_manager: pid says pose couldn't be reached successfully")
 
+                return CheckJointStateResponse(False)
+            
         else:
+            rospy.loginfo("trajectory_manager: pose not reachable")
             return CheckJointStateResponse(False)    
 
 
@@ -109,6 +114,8 @@ class trajectory_manager:
         else:
             rospy.loginfo("trajectory_manager: trajectory not sent successfully")
 
+        return successfully_reached    
+
     def run(self):
         """
         Main loop for the trajectory manager.
@@ -118,3 +125,10 @@ class trajectory_manager:
             rospy.sleep(0.5)
             self.rate.sleep()
             
+
+if __name__ == '__main__':
+    try:
+        trajectory_manager_node = trajectory_manager()
+        trajectory_manager_node.run()
+    except rospy.ROSInterruptException:
+        pass            

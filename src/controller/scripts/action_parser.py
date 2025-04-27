@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import rospy
 
 from assignments.srv import CheckJointState, CheckJointStateRequest
@@ -14,18 +16,24 @@ from controller.msg import SystemState
 class action_parser:
     def __init__(self):
         rospy.init_node('action_parser', anonymous=True)
+        rospy.loginfo("action_parser: node started")
 
         self.objects={}
         self.received_sequences=[]
         self.action_index=0
+        self.interrupted=False
         self.system_state=SystemState()
         self.system_state.state="IDLE"
+        self.prev_action_sequence=[]
 
 
         # Create service client to get the trajectory to follow
         #wait for the service to be available
         rospy.loginfo("Waiting for /send_set_points service...")
+
+
         rospy.wait_for_service('/send_set_points')
+        rospy.loginfo("Service /send_set_points is available")
         self.client_trajectory_send = rospy.ServiceProxy('/send_set_points', CheckJointState)
 
 
@@ -58,7 +66,8 @@ class action_parser:
     def sequence_callback(self,msg):
         # Convert the incoming string message to a list and append it to received_sequences
         new_seq=msg.action_sequence.split(",")
-        self.received_sequences.append(new_seq)
+        self.interrupted=msg.interrupted
+        self.received_sequences=new_seq
         return SendActionSeqResponse(True)
     
 
@@ -82,10 +91,14 @@ class action_parser:
 
         success=self.client_trajectory_send(joint_state_request)
 
+
+
         #dummy logic to make failure states
         if not success and random.uniform(0, 50) < 0.5:
             self.system_state.state="FAILURE"
             self.state_publisher.publish(self.system_state)
+
+        return success    
 
 
 
@@ -100,19 +113,54 @@ class action_parser:
 
         while not rospy.is_shutdown():
             # Check if there are any received sequences
-            if self.received_sequences:
-                # Process the last received sequence
+            if self.received_sequences!=self.prev_action_sequence   and self.interrupted==False:
+
+                self.prev_action_sequence=self.received_sequences
+
+                # Process the latest received sequence
                 for i in range(len(self.received_sequences)):
+                    
+                    #rospy.loginfo("legnth of received sequences: "+str(len(self.received_sequences)))
 
                     self.action_index=i
                     self.action_index_publisher.publish(self.action_index)
                     self.system_state.state="EXECUTING"
                     self.state_publisher.publish(self.system_state)
-                    self.send_set_points(self.received_sequences[i])
-                    rospy.loginfo(f"Processed action sequence: {self.sequence_callback[i]}")
+                    sucess=self.send_set_points()
+
+                    if self.interrupted:
+                        break
+
+                    rospy.loginfo(f"Processed action --{self.received_sequences[i]} --  in sequence  done :{sucess} ")
+                    rospy.sleep(10)
+            else:
+                self.prev_action_sequence=self.received_sequences
+                for i in range(self.action_index,len(self.received_sequences)):
+                    self.action_index=i
+                    self.action_index_publisher.publish(self.action_index)
+                    self.system_state.state="EXECUTING"
+                    self.state_publisher.publish(self.system_state)
+                    sucess=self.send_set_points()
+                   
+
+
+                    rospy.loginfo(f"Processed action --{self.received_sequences[i]} --  in sequence  done :{sucess} ")
                     rospy.sleep(3)
-                self.received_sequences = []  # Clear the list after processing
-                self.system_state.state="IDLE"
-                self.action_index=0
                 
-                rospy.sleep(1)
+
+            self.received_sequences = []  # Clear the list after processing
+            self.interrupted=False
+            self.system_state.state="IDLE"
+            self.state_publisher.publish(self.system_state)
+            self.action_index=0
+                
+            rospy.sleep(1)
+
+
+
+if __name__ == '__main__':
+    try:
+        action_parser_node = action_parser()
+        action_parser_node.run()
+    except rospy.ROSInterruptException:
+        pass
