@@ -24,11 +24,11 @@ class pid_controller:
         self.rate = rospy.Rate(10)
 
 
-        # Publisher
+        # publisher to output dummy values as long as the error is above a dummy threshold
         self.pid_pub= rospy.Publisher('/pid_output', Float64, queue_size=10)
 
 
-        #create service client to get the trajectory to follow
+        #a service to retrive dummy trajectories from the trajectory_manager node
         self.client = rospy.Service('/pid_get_trajectory', CheckJointState, self.input_callback)
 
 

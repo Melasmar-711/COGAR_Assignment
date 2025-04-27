@@ -37,18 +37,19 @@ class action_parser:
         self.client_trajectory_send = rospy.ServiceProxy('/send_set_points', CheckJointState)
 
 
-        #publisher for sending system state
+        #publisher for sending system state to human command monitor
         self.state_publisher=rospy.Publisher('/system_state', SystemState, queue_size=10)
 
 
-        # Create a publisher to send the action index to the action planner
+        # Create a publisher to send the action index to the action planner so we know which action in the sequence we are executing
         self.action_index_publisher=rospy.Publisher('action_index', Int32, queue_size=10)
 
-        #subscriber to the sequence of actions
+
+        #service to the recieve the sequence of actions from the action planner
         self.get_action_sequence_service= rospy.Service('/action_sequence_to_controller', SendActionSeq,self.sequence_callback)
 
 
-        # Create a subscriber to get the objects of interest locations
+        # Create a subscriber to get the objects of interest locations from perception node
         self.subscriber = rospy.Subscriber('/objects_of_interest', DetectedObjects, self.object_callback)
 
 
@@ -64,6 +65,10 @@ class action_parser:
             #rospy.loginfo(f"Detected {object_type} at position {object_position}")
 
     def sequence_callback(self,msg):
+        """
+        This Callback function Used to recieve the action sequence from the action planner node.
+        """
+
         # Convert the incoming string message to a list and append it to received_sequences
         new_seq=msg.action_sequence.split(",")
         self.interrupted=msg.interrupted
@@ -78,7 +83,7 @@ class action_parser:
 
     def send_set_points(self):
         """
-        Send the set points to the trajectory_manager.
+        This function is used to send the set points to the trajectory_manager.
         """
         
         #fill the CheckJointStateRequest with dummy velocities and positions and efforts for 7 joints
