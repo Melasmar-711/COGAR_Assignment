@@ -14,7 +14,7 @@ rosrun cooking_manager human_command_manager.py &
 
 rosrun controller action_parser.py &
 rosrun controller PID_Controller.py &
-rosrun controller tracjectory_manager.py &
+rosrun controller trajectory_manager.py &
 
 rosrun assignments arm_motion_service.py &
 rosrun perception computer_vision.py &

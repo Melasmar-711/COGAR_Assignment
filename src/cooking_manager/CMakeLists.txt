@@ -220,5 +220,6 @@ find_package(rostest REQUIRED)
 add_rostest(tests/test_recipe_tracking.test)
 add_rostest(tests/test_action_planing.test)
 add_rostest(tests/test_human_command_manager.test)
+add_rostest(tests/test_integration_tests.test)
 
 endif()	

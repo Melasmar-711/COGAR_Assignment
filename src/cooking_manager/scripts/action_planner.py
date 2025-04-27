@@ -68,7 +68,7 @@ class ActionPlanner:
                                         "cook onion": ["get onion not_urgent", "put in pan not_urgent", "turn on low heat not_urgent"],
                                         "boil the water":["grab the pan not_urgent", "fill the pan with water urgent", "put the pan on the stove urgent"],
                                         }
-
+        rospy.Timer(rospy.Duration(0.1), self.run)
 
 
 
@@ -128,10 +128,7 @@ class ActionPlanner:
 
     
     def send_sequence(self):
-        
         request=SendActionSeqRequest()
-        
-        
 
         # send the action sequence to the action planner topic
 
@@ -157,12 +154,8 @@ class ActionPlanner:
 
 
 
-    def run(self):
-
-        while not rospy.is_shutdown():
-
+    def run(self,event):
             #rospy.wait_for_service('action_sequence_to_command_monitor')
-
             if (self.current_step != self.prev_step ) or (self.new_command_not_used and self.valid_command != None):
                 self.prev_step = self.current_step
                 rospy.loginfo(f"about to parse: {self.current_step}")
@@ -186,10 +179,10 @@ class ActionPlanner:
             #     rospy.loginfo("No new step to process.")
 
             # Sleep to maintain the loop rate
-            self.rate.sleep()    
+            # self.rate.sleep()    
 
             
 
 if __name__ == '__main__':
     action_planner = ActionPlanner()
-    action_planner.run()
+    rospy.spin()

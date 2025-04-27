@@ -1,0 +1,27 @@
+<launch>
+
+    <node pkg="cooking_manager" name="action_planner" type="action_planner.py" />
+    <node pkg="cooking_manager" name="recipe_tracker" type="recipe_tracker.py" />
+    <node pkg="cooking_manager" name="human_command_manager" type="human_command_manager.py" />
+
+    <node pkg="controller" name="action_parser" type="action_parser.py" />
+    <node pkg="controller" name="PID_Controller" type="PID_Controller.py" />
+    <node pkg="controller" name="trajectory_manager" type="trajectory_manager.py" />
+
+    <node pkg="assignments" name="arm_motion_service" type="arm_motion_service.py" />
+
+    <node pkg="perception" name="computer_vision" type="computer_vision.py" />
+    <node pkg="perception" name="sensor_fusion" type="sensor_fusion.py" />
+    <node pkg="perception" name="slam" type="slam.py" />
+
+    <node pkg="rosbag" type="play" name="arm_jointstate" args="$(find cooking_manager)/2025_Assignment/arm_jointstate.bag  --loop" output="screen"/>
+    <node pkg="rosbag" type="play" name="depth_raw" args="$(find cooking_manager)/2025_Assignment/depth_raw.bag  --loop" output="screen"/>
+    <node pkg="rosbag" type="play" name="force_sensor" args="$(find cooking_manager)/2025_Assignment/force_sensor.bag  --loop" output="screen"/>
+    <node pkg="rosbag" type="play" name="odometry" args="$(find cooking_manager)/2025_Assignment/odometry.bag  --loop" output="screen"/>
+    <node pkg="rosbag" type="play" name="rgb_raw" args="$(find cooking_manager)/2025_Assignment/rgb_raw.bag  --loop" output="screen"/>
+    <node pkg="rosbag" type="play" name="scan_lidar" args="$(find cooking_manager)/2025_Assignment/scan_lidar.bag  --loop" output="screen"/>
+    <node pkg="rosbag" type="play" name="sonar" args="$(find cooking_manager)/2025_Assignment/sonar.bag  --loop" output="screen"/>
+
+
+    <test test-name="test_integration_tests" pkg="cooking_manager" type="test_integration_tests.py"/>
+</launch>
