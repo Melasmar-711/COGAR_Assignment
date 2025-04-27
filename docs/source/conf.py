@@ -26,28 +26,32 @@ sys.path.insert(0, os.path.abspath('../../devel/lib/python3/dist-packages'))
 
 
 
-# Minimal extensions
-extensions = [
-    	'sphinx.ext.autodoc',      # For Python docstrings
+show_authors=True
 
 
+# -- Project information -----------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-	'sphinx.ext.doctest',
-	'sphinx.ext.intersphinx',
-	'sphinx.ext.todo',
-	'sphinx.ext.coverage',
-	'sphinx.ext.mathjax',
-	'sphinx.ext.ifconfig',
-	'sphinx.ext.viewcode',
-	'sphinx.ext.githubpages',
-	"sphinx.ext.napoleon",
-	'sphinx.ext.inheritance_diagram',
-	'breathe'
-]
+project = 'COGAR aassignment'
+copyright = '2025, '
+author = 'M M A'
+release = '1.0'
 
+# -- General configuration ---------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-
-
+extensions = ['sphinx.ext.autodoc',
+'sphinx.ext.doctest',
+'sphinx.ext.intersphinx',
+'sphinx.ext.todo',
+'sphinx.ext.coverage',
+'sphinx.ext.mathjax',
+'sphinx.ext.ifconfig',
+'sphinx.ext.viewcode',
+'sphinx.ext.githubpages',
+"sphinx.ext.napoleon",
+'sphinx.ext.inheritance_diagram',
+'breathe']
 
 templates_path = ['_templates']
 exclude_patterns = []

@@ -12,17 +12,17 @@ This section documents all ROS packages comprising the system. Below is a summar
 +---------------------+-------------------------------------------------------+-----------------------------------------+
 | Package Name        | Description                                           | Key Components                          |
 +=====================+=======================================================+=========================================+
-| `controller`_       | Manages system state and coordinates action execution | - Action Parser Node                    |
-|                     |                                                       | - trajectory_manage node                |
+| controller          | Manages system state and coordinates action execution | - Action Parser Node                    |
+|                     |                                                       | - trajectory_manager node               |
 |                     |                                                       | - PID controller node                   |
 +---------------------+-------------------------------------------------------+-----------------------------------------+
-| `perception`_       | Handles sensor processing and object detection        | - SLAM                                  |
+| perception          | Handles sensor processing and object detection        | - SLAM                                  |
 |                     |                                                       | - Sensor Fusion                         |
-|		      | 						      | - computer vision		 	|
+|                     |                                                       | - Computer Vision                       |
 +---------------------+-------------------------------------------------------+-----------------------------------------+
-| `cooking_manager`_  | Manages recipe execution and action sequencing        | - Recipe tracker                        |
-|                     |                                                       | - Action planner	                |
-|		      |						              |-humman command monitoring		|
+| cooking_manager     | Manages recipe execution and action sequencing        | - Recipe tracker                        |
+|                     |                                                       | - Action planner                        |
+|                     |                                                       | - Human command monitoring              |
 +---------------------+-------------------------------------------------------+-----------------------------------------+
 
 Package Details
@@ -31,12 +31,6 @@ Package Details
    :maxdepth: 2
    :caption: Individual Package Documentation:
    
-   controller
-   perception
-   cooking_manager
-   
-
--------------------------------------
-
-
-
+   controller.rst
+   perception.rst
+   cooking_manager.rst
