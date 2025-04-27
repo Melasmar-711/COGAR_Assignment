@@ -182,8 +182,8 @@ class ActionPlanner:
 
                     # Send the action sequence to the action planner topic
                     self.send_sequence()
-            else:
-                rospy.loginfo("No new step to process.")
+            # else:
+            #     rospy.loginfo("No new step to process.")
 
             # Sleep to maintain the loop rate
             self.rate.sleep()    

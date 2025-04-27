@@ -58,7 +58,7 @@ class SensorFusionNode:
 
             if self.latest_cloud_point_msg:
                 self.pub.publish(self.latest_cloud_point_msg)
-                rospy.loginfo("Published fused point cloud")
+                # rospy.loginfo("Published fused point cloud")
 
 
 if __name__ == '__main__':

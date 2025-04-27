@@ -34,7 +34,7 @@ class ComputerVisionNode:
         ]
         cloud_msg = pc2.create_cloud_xyz32(header, cloud_points)
         self.cloud_pub.publish(cloud_msg)
-        rospy.loginfo("Published dummy cloud points")
+        # rospy.loginfo("Published dummy cloud points")
 
         # Publish dummy objects of interest
         detected_objects = DetectedObjects()
@@ -59,7 +59,7 @@ class ComputerVisionNode:
         detected_objects.poses = poses
 
         self.objects_pub.publish(detected_objects)
-        rospy.loginfo("Published dummy DetectedObjects")
+        # rospy.loginfo("Published dummy DetectedObjects")
 
     def run(self):
         rospy.spin()

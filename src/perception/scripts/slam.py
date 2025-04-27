@@ -39,7 +39,7 @@ class DummySLAMNode:
         map_msg.data = [0 for _ in range(map_msg.info.width * map_msg.info.height)]  # all free space
 
         self.map_pub.publish(map_msg)
-        rospy.loginfo("Published dummy map")
+        # rospy.loginfo("Published dummy map")
 
         # Dummy Odometry (random position)
         odom_msg = Odometry()
@@ -58,7 +58,7 @@ class DummySLAMNode:
         odom_msg.twist.twist.angular.z = 5.0
 
         self.odom_pub.publish(odom_msg)
-        rospy.loginfo("Published dummy robot location")
+        # rospy.loginfo("Published dummy robot location")
 
     def run(self):
         rospy.spin()
