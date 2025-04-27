@@ -80,7 +80,7 @@ class ActionPlanner:
             self.currnet_actions_sequence=[]
             self.current_action_index=0
 
-        self.valid_command=None
+        #self.valid_command=None
 
 
 
@@ -95,6 +95,9 @@ class ActionPlanner:
             self.prev_valid_command = self.valid_command
         
             rospy.loginfo(f"Valid command received: {self.valid_command}")
+        else:
+            self.new_command_not_used = False 
+            #rospy.loginfo(f"Valid command used already: {self.valid_command}")   
 
 
     def change_action_index_callback(self, msg):
@@ -143,7 +146,10 @@ class ActionPlanner:
             self.action_sequence_client_to_command_monitor(request)
             self.action_sequence_client_to_controller(request)
             rospy.loginfo("Action sequence sent successfully")
+            if self.seq_interrupted:
+                self.currnet_actions_sequence.remove(self.valid_command)
             self.seq_interrupted=False
+            
 
         except rospy.ServiceException as e:
             rospy.logerr(f"Service call failed: {e}")
@@ -157,7 +163,7 @@ class ActionPlanner:
 
             #rospy.wait_for_service('action_sequence_to_command_monitor')
 
-            if (self.current_step != self.prev_step ) or (self.new_command_not_used and self.valid_command is not None):
+            if (self.current_step != self.prev_step ) or (self.new_command_not_used and self.valid_command != None):
                 self.prev_step = self.current_step
                 rospy.loginfo(f"about to parse: {self.current_step}")
                 self.step_parsing(self.current_step)
@@ -169,6 +175,7 @@ class ActionPlanner:
                         rospy.loginfo(f"Re-arranged action sequence: {self.currnet_actions_sequence}")
                         self.seq_interrupted=True
                         self.new_command_not_used = False
+                        
                         
                         
                         
