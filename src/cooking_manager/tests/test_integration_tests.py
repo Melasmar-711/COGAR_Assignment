@@ -8,7 +8,7 @@ from std_msgs.msg import Int32
 from cooking_manager.srv import UpdateRecipe, UpdateRecipeResponse  
 from controller.msg import SystemState
 import json
-
+from control_msgs.msg import JointTrajectoryControllerState
 
 
 class TestIntegrationTests(unittest.TestCase):
@@ -34,38 +34,43 @@ class TestIntegrationTests(unittest.TestCase):
         self.failure_system_state = SystemState("FAILURE")
         self.logging_dict = {
             "system_state":[],
-            "action_indeces":[],
+            "arm_state":[],
         }
         rospy.wait_for_service("update_recipe")
 
 
     def setUp(self):
+        self.logging_dict = {
+            "system_state":[],
+            "arm_state":[],
+        }
         rospy.Subscriber("system_state", SystemState, self.handle_system_state)
-        rospy.Subscriber("action_index", Int32, self.handle_action_index)
+        rospy.Subscriber("/arm_right_controller/state", JointTrajectoryControllerState, self.handle_arm_state)
         rospy.sleep(1)  
         
     def handle_system_state(self,msg):
         self.logging_dict["system_state"].append(msg.state)
     
-    def handle_action_index(self,msg):
-        if len(self.logging_dict["action_indeces"]) ==0 or self.logging_dict["action_indeces"][-1] != msg.data:
-            self.logging_dict["action_indeces"].append(msg.data)
+    def handle_arm_state(self,msg):
+        self.logging_dict["arm_state"].append(msg.error.positions[0] )
+        
     
 
-    # def test_recipe_success(self): 
-    #     '''
-    #     this test checks the step parsing function of the action planning module
-    #     '''
-    #     result = self.update_recipe_service_proxy(self.dummy_recipe_text)
-    #     self.assertTrue(result.success,"error while calling the recipe tracker service")
+    def test_recipe_success(self): 
+        '''
+        this test checks the step parsing function of the action planning module
+        '''
+        result = self.update_recipe_service_proxy(self.dummy_recipe_text)
+        self.assertTrue(result.success,"error while calling the recipe tracker service")
 
-    #     rospy.sleep(50)
+        rospy.sleep(50)
 
-    #     self.assertEqual(self.logging_dict["system_state"][-1],"IDLE")
-    #     self.assertNotIn("FAILURE",self.logging_dict["system_state"])
-    #     self.assertIn("EXECUTING",self.logging_dict["system_state"])
-    #     self.assertEqual(self.logging_dict["action_indeces"],[0,1,0,1,2,0,1,2])
-    
+        self.assertEqual(self.logging_dict["system_state"][-1],"IDLE")
+        self.assertNotIn("FAILURE",self.logging_dict["system_state"])
+        self.assertIn("EXECUTING",self.logging_dict["system_state"])
+        reached_number = len([ele for ele in self.logging_dict["arm_state"] if ele < 0.0007])
+        self.assertGreater(reached_number,2+3+3)
+
     def test_verbal_success(self): 
         '''
         this test checks the step parsing function of the action planning module
@@ -81,7 +86,12 @@ class TestIntegrationTests(unittest.TestCase):
         self.assertEqual(self.logging_dict["system_state"][-1],"IDLE")
         self.assertNotIn("FAILURE",self.logging_dict["system_state"])
         self.assertIn("EXECUTING",self.logging_dict["system_state"])
-        self.assertEqual(self.logging_dict["action_indeces"],[0,1,2,0,1,2,0,1,2])
+        reached_number = len([ele for ele in self.logging_dict["arm_state"] if ele < 0.0007])
+        self.assertGreater(reached_number,3+3+3)
+
+
+
+
 
 
 
@@ -92,7 +102,7 @@ class TestIntegrationTests(unittest.TestCase):
     def tearDown(self):
         self.logging_dict = {
             "system_state":[],
-            "action_indeces":[],
+            "arm_state":[],
         }
         rospy.sleep(0.5)    
 

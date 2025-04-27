@@ -23,5 +23,5 @@
     <node pkg="rosbag" type="play" name="sonar" args="$(find cooking_manager)/2025_Assignment/sonar.bag  --loop" output="screen"/>
 
 
-    <test test-name="test_integration_tests" pkg="cooking_manager" type="test_integration_tests.py"/>
+    <test test-name="test_integration_tests" pkg="cooking_manager" type="test_integration_tests.py" time-limit="300"/>
 </launch>

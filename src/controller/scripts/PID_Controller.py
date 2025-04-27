@@ -53,7 +53,7 @@ class pid_controller:
             rospy.sleep(2)  # Sleep for a short duration to avoid busy waiting
 
             # if 1st joint reached an error of less than 0.0007s consider pose reached (dummy)
-            if abs(self.error[0]) < 0.007:
+            if abs(self.error[0]) < 0.0007:
                 rospy.loginfo("pid_controller: pose reached and error is less than threshold")
                 return CheckJointStateResponse(True)    
     
