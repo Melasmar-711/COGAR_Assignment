@@ -68,6 +68,7 @@ class action_parser:
         new_seq=msg.action_sequence.split(",")
         self.interrupted=msg.interrupted
         self.received_sequences=new_seq
+        rospy.loginfo(f"Received action sequence: {self.received_sequences} with interrupted state: {self.interrupted}")
         return SendActionSeqResponse(True)
     
 
@@ -129,7 +130,7 @@ class action_parser:
                     sucess=self.send_set_points()
 
 
-                    rospy.loginfo(f"interrupt : {self.interrupted} ,Processed action --{self.received_sequences[i]} --  in sequence  done :{sucess} ")
+                    rospy.loginfo(f"interrupt : {self.interrupted} ,Processed action --{self.received_sequences[self.action_index]} --  in sequence  done :{sucess} ")
                     rospy.sleep(2)
 
                     if self.interrupted:
