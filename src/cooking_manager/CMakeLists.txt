@@ -63,6 +63,7 @@ add_message_files(
 add_service_files(
   FILES
   UpdateRecipe.srv
+  SendActionSeq.srv
 )
 
 ## Generate actions in the 'action' folder

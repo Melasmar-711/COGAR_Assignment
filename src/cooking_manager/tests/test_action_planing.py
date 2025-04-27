@@ -3,12 +3,19 @@ import rospy
 import unittest
 from std_msgs.msg import String
 from cooking_manager.msg import RecipeStep
+from cooking_manager.srv import SendActionSeq, SendActionSeqResponse
+from std_msgs.msg import Int32
+import random
 
 
 class TestActionPlanning(unittest.TestCase):
+    
     @classmethod
     def setUpClass(self) -> None:
         rospy.init_node('action_planning_test_node', anonymous=True)
+
+
+
 
         self.dummy_steps=["cut the onions","cook onion","boil the water"]
 
@@ -19,7 +26,7 @@ class TestActionPlanning(unittest.TestCase):
                                     ]
         self.dummy_action_seqences_valid_commands_sent=[
                                     ["grab the onions urgent", "cut the onions not_urgent"],
-                                    ["wait 2 seconds","get onion not_urgent", "put in pan not_urgent", "turn on low heat not_urgent"],
+                                    ["get onion not_urgent", "put in pan not_urgent", "turn on low heat not_urgent","wait 2 seconds"],
                                     ["grab the pan not_urgent", "fill the pan with water urgent", "put the pan on the stove urgent"]
                                     ]      
 
@@ -29,18 +36,32 @@ class TestActionPlanning(unittest.TestCase):
     def setUp(self):
         self.step_publisher = rospy.Publisher('recipe_step', RecipeStep, queue_size=10)
         self.valid_command_publisher = rospy.Publisher('valid_command', String, queue_size=10)
-        self.rate= rospy.Rate(10)  # 10 Hz
-        self.Subscriber=rospy.Subscriber('action_sequence',String, self.sequence_callback)
+        
+        # Create a service proxy to call the get_action_sequence service
+        self.get_action_sequence_service = rospy.Service('action_sequence_to_command_monitor', SendActionSeq,self.sequence_callback)
+        self.get_actions_to_controller=rospy.Service('action_sequence_to_controller', SendActionSeq,self.aquire_sequence_for_controller)
 
-        rospy.sleep(1)  # Allow some time for the publisher to register
-
+        self.action_index_pub=rospy.Publisher('action_index', Int32, queue_size=10)
+        
+        self.received_sequences = []  # Reset before each test
+        self.received_sequences_for_controller=[]
+        self.action_index_value = 0
+        self.rate = rospy.Rate(10)
+        rospy.sleep(1)  # Allow publishers to register
         
 
     
     def sequence_callback(self,msg):
             # Convert the incoming string message to a list and append it to received_sequences
-            new_seq=msg.data.split(",")
+            new_seq=msg.action_sequence.split(",")
             self.received_sequences.append(new_seq)
+            return SendActionSeqResponse(True)
+    
+    def aquire_sequence_for_controller(self,msg):
+            # Convert the incoming string message to a list and append it to received_sequences
+            new_seq=msg.action_sequence.split(",")
+            self.received_sequences_for_controller.append(new_seq)
+            return SendActionSeqResponse(True)
 
     def test_parsing_steps(self): 
         '''
@@ -101,6 +122,18 @@ class TestActionPlanning(unittest.TestCase):
             self.fail(f"Number of received sequences ({len(self.received_sequences)}) does not match expected ({len(self.dummy_action_seqences_valid_commands_sent)}).")               
 
         rospy.loginfo("test_rearranging_sequence passed and all action sequences are received correctly")
+
+
+  
+
+
+    def tearDown(self):
+        # Shutdown service to avoid "already registered" errors
+        if hasattr(self, 'get_action_sequence_service'):
+            self.get_action_sequence_service.shutdown()
+        if hasattr(self, 'get_actions_to_controller'):
+            self.get_actions_to_controller.shutdown()    
+        rospy.sleep(0.5)    
 
             
 

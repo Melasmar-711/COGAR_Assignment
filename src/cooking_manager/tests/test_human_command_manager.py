@@ -3,24 +3,50 @@ import rospy
 import rostest
 import unittest
 from std_msgs.msg import String
+from std_srvs.srv import Trigger, TriggerResponse
+from cooking_manager.srv import SendActionSeq, SendActionSeqResponse, SendActionSeqRequest
+from controller.msg import SystemState
 
 class TestHumanCommandManager(unittest.TestCase):
-    def setUp(self):
+
+    @classmethod
+    def setUpClass(self) -> None:
         rospy.init_node("test_human_command_manager", anonymous=True)
+
+        # wait for the action_sequence_to_command_monitor service to be available
+        rospy.wait_for_service("/action_sequence_to_command_monitor")
+        self.action_service = rospy.ServiceProxy("/action_sequence_to_command_monitor", SendActionSeq)
+
+
+
+    def setUp(self):
         self.received_cmds = []
         self.verbal_pub = rospy.Publisher("/verbal_command", String, queue_size=10)
-        self.state_pub = rospy.Publisher("/system_state", String, queue_size=10)
-        self.action_pub = rospy.Publisher("/action_sequence", String, queue_size=10)
+        self.state_pub = rospy.Publisher("/system_state", SystemState, queue_size=10)
+
+
+
+
         rospy.sleep(1)
         rospy.Subscriber("/valid_command", String, self._cmd_callback)
 
 
     def _cmd_callback(self, msg):
         self.received_cmds.append(msg.data)
+
     def publish_inputs(self, state, actions, verbal_cmd):
-        self.action_pub.publish(String(data=",".join(actions)))  # 1st publish actions
+
+
+        state_msg=SystemState()
+        state_msg.state = state.upper()  # Ensure the state is in uppercase
+        request=SendActionSeqRequest()
+
+        request.action_sequence = ",".join(actions)
+       
+        self.action_service(request)
+
         rospy.sleep(0.5)
-        self.state_pub.publish(String(data=state))               # 2nd publish state
+        self.state_pub.publish(state_msg)               # 2nd publish state
         rospy.sleep(0.5)
         self.verbal_pub.publish(String(data=verbal_cmd))          # 3rd publish verbal command
         rospy.sleep(2)

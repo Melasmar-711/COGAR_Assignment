@@ -35,7 +35,7 @@ def joint_state_service():
     """
     rospy.init_node('joint_state_service', anonymous=True)
     # Create the service that listens for requests
-    service = rospy.Service('/check_joint_state', CheckJointState, check_joint_state)
+    service = rospy.Service('/check_reachable_pose', CheckJointState, check_joint_state)
     rospy.loginfo("Joint state service is ready!")
     rospy.spin()
 

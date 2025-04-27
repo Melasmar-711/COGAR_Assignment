@@ -2,18 +2,23 @@
 import rospy
 from std_msgs.msg import String
 from controller.msg import SystemState
+from cooking_manager.srv import SendActionSeq, SendActionSeqResponse
 
 class HumanCommandManager:
     def __init__(self):
         self._last_verbal_cmd = None
         self._current_state = "IDLE"
         self.currnet_actions_sequence = []
+        self.interrupted_already=False
         self._has_published = False
 
         # Subscribers
         rospy.Subscriber("/verbal_command", String, self.verbal_callback)
         rospy.Subscriber("/system_state", SystemState, self.state_callback)
-        rospy.Subscriber("/action_sequence", String, self.actions_callback)
+        
+        # a ros service of type sendActionSeq that recives the action sequence from the action_planner
+        #wait for the action_sequence_to_command_monitor service to be available
+        self._action_sequence_service = rospy.Service("action_sequence_to_command_monitor", SendActionSeq, self.actions_callback)
 
         # Publisher
         self._valid_pub = rospy.Publisher("/valid_command", String, queue_size=1)
@@ -30,9 +35,12 @@ class HumanCommandManager:
         self.evaluate_and_publish()
 
     def actions_callback(self, msg):
-        self.currnet_actions_sequence = [action.strip() for action in msg.data.split(',') if action.strip()]
+        self.currnet_actions_sequence = [action.strip() for action in msg.action_sequence.split(',') if action.strip()]
+       
         rospy.loginfo(f"[ACTIONS] Updated: {self.currnet_actions_sequence}")
         self.evaluate_and_publish()
+        return SendActionSeqResponse(True)
+
 
     def evaluate_and_publish(self):
         # Don't do anything if no new verbal command
@@ -67,6 +75,8 @@ class HumanCommandManager:
 
 if __name__ == "__main__":
     rospy.init_node("human_command_manager")
+    rospy.loginfo("Human Command Manager Node Started")
+    
     manager = HumanCommandManager()
     rospy.spin()
 
