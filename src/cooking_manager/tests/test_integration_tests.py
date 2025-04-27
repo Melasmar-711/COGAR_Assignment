@@ -81,7 +81,7 @@ class TestIntegrationTests(unittest.TestCase):
         self.assertEqual(self.logging_dict["system_state"][-1],"IDLE")
         self.assertNotIn("FAILURE",self.logging_dict["system_state"])
         self.assertIn("EXECUTING",self.logging_dict["system_state"])
-        self.assertEqual(self.logging_dict["action_indeces"],[0,1,0,1,2,0,1,2])
+        self.assertEqual(self.logging_dict["action_indeces"],[0,1,2,0,1,2,0,1,2])
 
 
 
