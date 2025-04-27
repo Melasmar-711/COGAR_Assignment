@@ -9,6 +9,7 @@
   <title>Cooking Manager Package &mdash; Cooking Robot 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -44,36 +45,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-the-system">Running the System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-unit-tests">Running unit tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../architecture/component_diagram.html">Component Diagram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Packages Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#overview-of-packages">Overview of Packages</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#package-details">Package Details</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="controller.html">Controller Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="controller.html#package-overview">Package Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller.html#nodes">Nodes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="controller.html#messages">Messages</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="perception.html#package-overview">Package Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="perception.html#nodes">Nodes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="perception.html#messages">Messages</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="controller.html">Controller Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception Package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Cooking Manager Package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#package-overview">Package Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#nodes">Nodes</a></li>
@@ -84,36 +62,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#inter-package-communication">Inter-Package Communication</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../kpis_and_testing/index.html">Unit Testing KPIs for TIAGo Cooking Assistant</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#recipe-tracking-kpis">1. Recipe Tracking KPIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#action-planning-kpis">2. Action Planning KPIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#human-command-manager-kpis">3. Human Command Manager KPIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#cross-component-kpis">4. Cross-Component KPIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#conclusion">Conclusion</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials.html#basic-usage">Basic Usage</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Packages Documentation</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html#overview-of-packages">Overview of Packages</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html#package-details">Package Details</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="controller.html">Controller Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="perception.html">Perception Package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Cooking Manager Package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#inter-package-communication">Inter-Package Communication</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../kpis_and_testing/index.html">Unit Testing KPIs for TIAGo Cooking Assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference.html">API Reference</a></li>
 </ul>
 
         </div>

@@ -28,21 +28,37 @@ sys.path.insert(0, os.path.abspath('../../devel/lib/python3/dist-packages'))
 
 # Minimal extensions
 extensions = [
-    'sphinx.ext.autodoc',      # For Python docstrings
-    'sphinx.ext.viewcode',     # Add links to source code
-    'sphinx.ext.napoleon'      # Google-style docstrings
+    	'sphinx.ext.autodoc',      # For Python docstrings
+
+
+
+	'sphinx.ext.doctest',
+	'sphinx.ext.intersphinx',
+	'sphinx.ext.todo',
+	'sphinx.ext.coverage',
+	'sphinx.ext.mathjax',
+	'sphinx.ext.ifconfig',
+	'sphinx.ext.viewcode',
+	'sphinx.ext.githubpages',
+	"sphinx.ext.napoleon",
+	'sphinx.ext.inheritance_diagram',
+	'breathe'
 ]
 
 
-# RTD Theme settings
+
+
+
+templates_path = ['_templates']
+exclude_patterns = []
+
+
+
+# -- Options for HTML output -------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+
+
+highlight_language = 'c++'
+source_suffix = '.rst'
+master_doc = 'index'
 html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
-
-
-# Theme options
-html_theme_options = {
-    'navigation_depth': 4,
-    'collapse_navigation': False,
-    'sticky_navigation': True
-}
-
