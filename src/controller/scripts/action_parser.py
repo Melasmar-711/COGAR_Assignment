@@ -61,7 +61,7 @@ class action_parser:
             object_type = msg.types[i]
             object_position = msg.poses.poses[i].position
             self.objects[object_type] = object_position
-            rospy.loginfo(f"Detected {object_type} at position {object_position}")
+            #rospy.loginfo(f"Detected {object_type} at position {object_position}")
 
     def sequence_callback(self,msg):
         # Convert the incoming string message to a list and append it to received_sequences
@@ -113,12 +113,12 @@ class action_parser:
 
         while not rospy.is_shutdown():
             # Check if there are any received sequences
-            if self.received_sequences!=self.prev_action_sequence   and self.interrupted==False:
+            if self.received_sequences!=self.prev_action_sequence : 
 
                 self.prev_action_sequence=self.received_sequences
 
                 # Process the latest received sequence
-                for i in range(len(self.received_sequences)):
+                for i in range(self.action_index,len(self.received_sequences)):
                     
                     #rospy.loginfo("legnth of received sequences: "+str(len(self.received_sequences)))
 
@@ -128,12 +128,14 @@ class action_parser:
                     self.state_publisher.publish(self.system_state)
                     sucess=self.send_set_points()
 
+
+                    rospy.loginfo(f"interrupt : {self.interrupted} ,Processed action --{self.received_sequences[i]} --  in sequence  done :{sucess} ")
+                    rospy.sleep(2)
+
                     if self.interrupted:
                         break
 
-                    rospy.loginfo(f"Processed action --{self.received_sequences[i]} --  in sequence  done :{sucess} ")
-                    rospy.sleep(10)
-            else:
+            '''else:
                 self.prev_action_sequence=self.received_sequences
                 for i in range(self.action_index,len(self.received_sequences)):
                     self.action_index=i
@@ -145,16 +147,21 @@ class action_parser:
 
 
                     rospy.loginfo(f"Processed action --{self.received_sequences[i]} --  in sequence  done :{sucess} ")
-                    rospy.sleep(3)
+                    rospy.sleep(3)'''
                 
 
-            self.received_sequences = []  # Clear the list after processing
-            self.interrupted=False
-            self.system_state.state="IDLE"
-            self.state_publisher.publish(self.system_state)
-            self.action_index=0
-                
-            rospy.sleep(1)
+            if self.interrupted==False:
+                # If the sequence is not interrupted, reset the action index and state
+                self.received_sequences = [] 
+                self.system_state.state="IDLE"
+                self.state_publisher.publish(self.system_state)
+                self.action_index=0
+                self.action_index_publisher.publish(self.action_index)
+                rospy.sleep(1)
+            else:
+                self.interrupted=False 
+                rospy.sleep(1)
+   
 
 
 

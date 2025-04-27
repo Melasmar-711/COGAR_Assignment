@@ -84,7 +84,7 @@ class trajectory_manager:
         self.map_msg.info.origin.orientation.w = data.info.origin.orientation.w
         self.map_msg.data = data.data
 
-        rospy.loginfo("trajectory_manager: recieved map data")
+        #rospy.loginfo("trajectory_manager: recieved map data")
     
 
     def odom_callback(self,data):
@@ -101,7 +101,7 @@ class trajectory_manager:
         self.odom.twist.twist.linear.y = data.twist.twist.linear.y
         self.odom.twist.twist.linear.z = data.twist.twist.linear.z
         self.odom.twist.twist.angular.z = data.twist.twist.angular.z
-        rospy.loginfo("trajectory_manager: recieved odometry data")
+        #rospy.loginfo("trajectory_manager: recieved odometry data")
 
     def send_trajectory(self):
         """
