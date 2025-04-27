@@ -104,13 +104,18 @@ We implemented **real unit tests** for each mandatory component:
 
 to try test 
 #### Test the Recipe Tracker
+```bash
 rostest cooking_manager test_recipe_tracker.test
-
-#### Test the Action Planner
+```
+#### Test the Action Planner 
+```bash
 rostest cooking_manager test_action_planner.test
+```
 
 #### Test the Human Command Manager
+```bash
 rostest cooking_manager test_human_command_manager.test
+```
 
 
 
@@ -146,7 +151,7 @@ We verified the complete flow from receiving a recipe to executing physical moti
 ---
 
 ## Repository Structure
-'''
+```bash
 Cooking Manager System
 ├── cooking_manager
 │   ├── nodes
@@ -176,6 +181,7 @@ Cooking Manager System
 │   │   └── slam
 │   ├── msg
 │   │   └── DetectedObjects.msg
-'''
+```
+
 
 
