@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scripts.action_planner &mdash; Cooking Robot 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Cooking Robot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#running-the-system">Running the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/component_diagram.html">Component Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/controller.html">Controller Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/controller.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/controller.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/controller.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/perception.html">Perception Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/perception.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/perception.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/perception.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/cooking_manager.html">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#services">Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#unit-tests">Unit Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials.html#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/controller.html">Controller Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/perception.html">Perception Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html">Cooking Manager Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Cooking Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scripts.action_planner</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for scripts.action_planner</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;Action Planner Node.</span>
+
+<span class="sd">This node translates recipe steps into actionable sequences and manages their execution.</span>
+<span class="sd">It handles both automated recipe steps and human intervention commands, coordinating</span>
+<span class="sd">between the recipe tracker, command monitor, and controller nodes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">String</span><span class="p">,</span> <span class="n">Int32</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cooking_manager.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecipeStep</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cooking_manager.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">SendActionSeq</span><span class="p">,</span> <span class="n">SendActionSeqResponse</span><span class="p">,</span> <span class="n">SendActionSeqRequest</span>
+
+
+<div class="viewcode-block" id="ActionPlanner">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.action_planner.ActionPlanner">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ActionPlanner</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts recipe steps to action sequences and manages command insertion.</span>
+<span class="sd">    </span>
+<span class="sd">    This class maintains the current action sequence, handles human intervention commands,</span>
+<span class="sd">    and coordinates with other system components to execute cooking actions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the ActionPlanner node with subscribers, services, and mappings.&quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;action_planner&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Action Planner: node started&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev_step</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>        
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev_valid_command</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_command_not_used</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq_interrupted</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_action_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1">#set the rate of the loop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 10 Hz</span>
+
+        <span class="c1"># Subscriber to the recipe step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_subscriber</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;recipe_step&#39;</span><span class="p">,</span> <span class="n">RecipeStep</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_callback</span><span class="p">)</span>
+
+        <span class="c1"># Subscriber to the valid command coming from human command manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_command_subscriber</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;valid_command&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_command_callback</span><span class="p">)</span>
+
+        <span class="c1"># Client to send the new action_sequence as a request to controller</span>
+        <span class="c1"># wait for the action_sequence_to_controller service to be available</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;action_sequence_to_controller&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_sequence_client_to_controller</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;action_sequence_to_controller&#39;</span><span class="p">,</span> <span class="n">SendActionSeq</span><span class="p">)</span>
+        
+        <span class="c1">#subscriber to the current step the controller is executing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_sequence_subscriber</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;action_index&#39;</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_action_index_callback</span><span class="p">)</span>
+
+        <span class="c1"># Client to send the new action_sequence as a request to controller</span>
+        <span class="c1">#wait for the action_sequence_to_command_monitor service to be available</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;action_sequence_to_command_monitor&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_sequence_client_to_command_monitor</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;action_sequence_to_command_monitor&#39;</span><span class="p">,</span> <span class="n">SendActionSeq</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">steps_to_action_mapping</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;cut the onions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;grab the onions urgent&quot;</span><span class="p">,</span> <span class="s2">&quot;cut the onions not_urgent&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;cook onion&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;get onion not_urgent&quot;</span><span class="p">,</span> <span class="s2">&quot;put in pan not_urgent&quot;</span><span class="p">,</span> <span class="s2">&quot;turn on low heat not_urgent&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;boil the water&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;grab the pan not_urgent&quot;</span><span class="p">,</span> <span class="s2">&quot;fill the pan with water urgent&quot;</span><span class="p">,</span> <span class="s2">&quot;put the pan on the stove urgent&quot;</span><span class="p">],</span>
+        <span class="p">}</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ActionPlanner.step_callback">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.action_planner.ActionPlanner.step_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">step_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback for recipe step updates.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            msg (RecipeStep): The current recipe step message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">step</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prev_step</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_action_index</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="ActionPlanner.valid_command_callback">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.action_planner.ActionPlanner.valid_command_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">valid_command_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback for valid human commands.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            msg (String): The validated human command message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prev_valid_command</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_command_not_used</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prev_valid_command</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valid command received: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_command_not_used</span> <span class="o">=</span> <span class="kc">False</span> </div>
+
+
+<div class="viewcode-block" id="ActionPlanner.change_action_index_callback">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.action_planner.ActionPlanner.change_action_index_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">change_action_index_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback for current action index updates.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            msg (Int32): The current action index being executed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_action_index</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="ActionPlanner.step_parsing">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.action_planner.ActionPlanner.step_parsing">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">step_parsing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_step</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Maps recipe steps to action sequences.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            current_step (str): The current recipe step to parse.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;parsing: </span><span class="si">{</span><span class="n">current_step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps_to_action_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">current_step</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ActionPlanner.re_arrange_sequence">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.action_planner.ActionPlanner.re_arrange_sequence">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">re_arrange_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_sequence</span><span class="p">,</span> <span class="n">new_valid_cmd</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Inserts human commands into the action sequence based on urgency.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            action_sequence (list): Current sequence of actions.</span>
+<span class="sd">            new_valid_cmd (str): Valid human command to insert.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># valid command inserting policy</span>
+        <span class="c1"># if the number of non urgent actions remaining in the action sequence is more than 10% or equal to of the remaining actions, insert the new command at the end of the sequence</span>
+        <span class="c1"># otherwise insert it at the end of the current action sequence</span>
+        <span class="n">non_urgent_actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">action</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">action_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_action_index</span><span class="p">:]</span> <span class="k">if</span> <span class="s2">&quot;not_urgent&quot;</span> <span class="ow">in</span> <span class="n">action</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">non_urgent_actions</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">action_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_action_index</span><span class="p">:])</span> <span class="o">&gt;=</span> <span class="mf">0.1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_action_index</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">action_sequence</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_valid_cmd</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_command_not_used</span> <span class="o">=</span> <span class="kc">False</span>        </div>
+
+
+<div class="viewcode-block" id="ActionPlanner.send_sequence">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.action_planner.ActionPlanner.send_sequence">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sends the current action sequence to controller and command monitor.&quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SendActionSeqRequest</span><span class="p">()</span>
+
+        <span class="c1"># send the action sequence to the action planner topic</span>
+        <span class="n">action_sequence_str</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">action_sequence</span> <span class="o">=</span> <span class="n">action_sequence_str</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">interrupted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq_interrupted</span>
+
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Action sequence: </span><span class="si">{</span><span class="n">action_sequence_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">action_sequence_client_to_command_monitor</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">action_sequence_client_to_controller</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Action sequence sent successfully&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq_interrupted</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">seq_interrupted</span> <span class="o">=</span> <span class="kc">False</span>
+            
+        <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Service call failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ActionPlanner.run">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.action_planner.ActionPlanner.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Main execution loop for processing steps and commands.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            event: Timer event (unused).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_step</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prev_step</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_command_not_used</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prev_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;about to parse: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step_parsing</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_step</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Check if the valid command is present</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_command_not_used</span><span class="p">:</span> 
+                    <span class="c1"># Re-arrange the sequence based on the valid command</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">re_arrange_sequence</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_command</span><span class="p">)</span>
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Re-arranged action sequence: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">currnet_actions_sequence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">seq_interrupted</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">new_command_not_used</span> <span class="o">=</span> <span class="kc">False</span>
+                
+                <span class="c1"># Send the action sequence to the action planner topic</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send_sequence</span><span class="p">()</span></div>
+</div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">action_planner</span> <span class="o">=</span> <span class="n">ActionPlanner</span><span class="p">()</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

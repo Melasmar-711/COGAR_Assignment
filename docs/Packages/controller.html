@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controller Package &mdash; Cooking Robot 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Perception Package" href="perception.html" />
+    <link rel="prev" title="Packages Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Cooking Robot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-the-system">Running the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/component_diagram.html">Component Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Packages Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#package-details">Package Details</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Controller Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="perception.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="perception.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="perception.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cooking_manager.html">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#services">Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#unit-tests">Unit Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kpis_and_testing/index.html">Unit Testing KPIs for TIAGo Cooking Assistant</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#recipe-tracking-kpis">1. Recipe Tracking KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#action-planning-kpis">2. Action Planning KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#human-command-manager-kpis">3. Human Command Manager KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#cross-component-kpis">4. Cross-Component KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials.html#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Packages Documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#package-details">Package Details</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Controller Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="perception.html">Perception Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html">Cooking Manager Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Cooking Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Packages Documentation</a></li>
+      <li class="breadcrumb-item active">Controller Package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Packages/controller.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controller-package">
+<h1>Controller Package<a class="headerlink" href="#controller-package" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#package-overview" id="id1">Package Overview</a></p></li>
+<li><p><a class="reference internal" href="#nodes" id="id2">Nodes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-controller.scripts.action_parser" id="id3">Action Parser</a></p></li>
+<li><p><a class="reference internal" href="#module-controller.scripts.trajectory_manager" id="id4">Trajectory Manager</a></p></li>
+<li><p><a class="reference internal" href="#module-controller.scripts.PID_Controller" id="id5">PID Controller</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#messages" id="id6">Messages</a></p>
+<ul>
+<li><p><a class="reference internal" href="#system-state" id="id7">System State</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="package-overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Package Overview</a><a class="headerlink" href="#package-overview" title="Link to this heading"></a></h2>
+<p>The controller package manages system state and motion execution.</p>
+</section>
+<section id="nodes">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Nodes</a><a class="headerlink" href="#nodes" title="Link to this heading"></a></h2>
+<section id="module-controller.scripts.action_parser">
+<span id="action-parser"></span><h3><a class="toc-backref" href="#id3" role="doc-backlink">Action Parser</a><a class="headerlink" href="#module-controller.scripts.action_parser" title="Link to this heading"></a></h3>
+<p><strong>ROS Interfaces:</strong></p>
+<dl class="simple">
+<dt>Service Clients:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/send_set_points</span></code> → <code class="xref py py-class docutils literal notranslate"><span class="pre">assignments.srv.CheckJointState</span></code> (Sends joint commands to Trajectory Manager)</p></li>
+</ul>
+</dd>
+<dt>Subscribers:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/objects_of_interest</span></code> (<a class="reference internal" href="perception.html#perception.msg.DetectedObjects" title="perception.msg.DetectedObjects"><code class="xref py py-class docutils literal notranslate"><span class="pre">perception.msg.DetectedObjects</span></code></a>)</p></li>
+</ul>
+</dd>
+<dt>Publishers:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/system_state</span></code> (<a class="reference internal" href="#controller.msg.SystemState" title="controller.msg.SystemState"><code class="xref py py-class docutils literal notranslate"><span class="pre">controller.msg.SystemState</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/action_index</span></code> (<code class="xref py py-class docutils literal notranslate"><span class="pre">std_msgs.msg.Int32</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="controller.scripts.action_parser.action_parser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.scripts.action_parser.</span></span><span class="sig-name descname"><span class="pre">action_parser</span></span><a class="reference internal" href="../_modules/controller/scripts/action_parser.html#action_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.action_parser.action_parser" title="Link to this definition"></a></dt>
+<dd><p>Parses and executes action sequences for the robot controller.</p>
+<p>This node receives action sequences from the planner, manages their execution,
+and coordinates with other system components including trajectory management
+and state monitoring.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.action_parser.action_parser.object_callback">
+<span class="sig-name descname"><span class="pre">object_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/action_parser.html#action_parser.object_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.action_parser.action_parser.object_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for detected objects from perception node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference internal" href="perception.html#perception.msg.DetectedObjects" title="perception.msg.DetectedObjects"><em>DetectedObjects</em></a>) – Message containing detected objects and their positions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.action_parser.action_parser.publishing">
+<span class="sig-name descname"><span class="pre">publishing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/action_parser.html#action_parser.publishing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.action_parser.action_parser.publishing" title="Link to this definition"></a></dt>
+<dd><p>Periodically publishes system state and action index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – Timer event (unused).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.action_parser.action_parser.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/action_parser.html#action_parser.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.action_parser.action_parser.run" title="Link to this definition"></a></dt>
+<dd><p>Main execution loop for processing action sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – Timer event (unused).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.action_parser.action_parser.send_set_points">
+<span class="sig-name descname"><span class="pre">send_set_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/action_parser.html#action_parser.send_set_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.action_parser.action_parser.send_set_points" title="Link to this definition"></a></dt>
+<dd><p>Sends joint set points to trajectory manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if set points were sent successfully, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.action_parser.action_parser.sequence_callback">
+<span class="sig-name descname"><span class="pre">sequence_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/action_parser.html#action_parser.sequence_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.action_parser.action_parser.sequence_callback" title="Link to this definition"></a></dt>
+<dd><p>Service callback for receiving action sequences from planner.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference internal" href="cooking_manager.html#cooking_manager.srv.SendActionSeq" title="cooking_manager.srv.SendActionSeq"><em>SendActionSeq</em></a>) – Service request containing the action sequence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Always returns True indicating successful receipt.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SendActionSeqResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-controller.scripts.trajectory_manager">
+<span id="trajectory-manager"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">Trajectory Manager</a><a class="headerlink" href="#module-controller.scripts.trajectory_manager" title="Link to this heading"></a></h3>
+<p>Trajectory Manager Node.</p>
+<p>This node manages robot trajectories by coordinating between action planning,
+pose reachability checking, and PID control. It receives target positions,
+verifies reachability, and sends trajectories to the PID controller.</p>
+<p><strong>ROS Interfaces:</strong></p>
+<dl class="simple">
+<dt>Services:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/get_trajectory</span></code> (<code class="xref py py-class docutils literal notranslate"><span class="pre">assignments.srv.CheckJointState</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="controller.scripts.trajectory_manager.trajectory_manager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.scripts.trajectory_manager.</span></span><span class="sig-name descname"><span class="pre">trajectory_manager</span></span><a class="reference internal" href="../_modules/controller/scripts/trajectory_manager.html#trajectory_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.trajectory_manager.trajectory_manager" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manages robot trajectory execution through coordination with other nodes.</p>
+<p>This node serves as an intermediary between action planning and low-level control,
+handling trajectory validation and execution monitoring.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.trajectory_manager.trajectory_manager.input_callback">
+<span class="sig-name descname"><span class="pre">input_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/trajectory_manager.html#trajectory_manager.input_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.trajectory_manager.trajectory_manager.input_callback" title="Link to this definition"></a></dt>
+<dd><p>Service callback for receiving set points from action parser.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>CheckJointState</em>) – The incoming trajectory request.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if trajectory was successfully executed, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CheckJointStateResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.trajectory_manager.trajectory_manager.map_callback">
+<span class="sig-name descname"><span class="pre">map_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/trajectory_manager.html#trajectory_manager.map_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.trajectory_manager.trajectory_manager.map_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for receiving map updates from SLAM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>OccupancyGrid</em>) – The incoming map message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.trajectory_manager.trajectory_manager.odom_callback">
+<span class="sig-name descname"><span class="pre">odom_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/trajectory_manager.html#trajectory_manager.odom_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.trajectory_manager.trajectory_manager.odom_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for receiving odometry updates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>Odometry</em>) – The incoming odometry message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.trajectory_manager.trajectory_manager.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/trajectory_manager.html#trajectory_manager.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.trajectory_manager.trajectory_manager.run" title="Link to this definition"></a></dt>
+<dd><p>Main execution loop for the trajectory manager.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.trajectory_manager.trajectory_manager.send_trajectory">
+<span class="sig-name descname"><span class="pre">send_trajectory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/trajectory_manager.html#trajectory_manager.send_trajectory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.trajectory_manager.trajectory_manager.send_trajectory" title="Link to this definition"></a></dt>
+<dd><p>Sends trajectory to PID controller for execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Response from PID controller indicating success.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>CheckJointStateResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-controller.scripts.PID_Controller">
+<span id="pid-controller"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">PID Controller</a><a class="headerlink" href="#module-controller.scripts.PID_Controller" title="Link to this heading"></a></h3>
+<p>PID Controller Node.</p>
+<p>This node implements a dummy PID controller that simulates joint position control.
+It receives trajectory requests and publishes dummy control outputs while monitoring
+joint state errors.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="controller.scripts.PID_Controller.pid_controller">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.scripts.PID_Controller.</span></span><span class="sig-name descname"><span class="pre">pid_controller</span></span><a class="reference internal" href="../_modules/controller/scripts/PID_Controller.html#pid_controller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.PID_Controller.pid_controller" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simulates a PID controller for joint trajectory following.</p>
+<p>This node provides dummy PID control outputs and monitors joint state errors
+to determine when target positions are reached.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.scripts.PID_Controller.pid_controller.input_callback">
+<span class="sig-name descname"><span class="pre">input_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/scripts/PID_Controller.html#pid_controller.input_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.scripts.PID_Controller.pid_controller.input_callback" title="Link to this definition"></a></dt>
+<dd><p>Service callback for receiving trajectory requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>CheckJointState</em>) – The trajectory request message.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if target reached, False if timeout occurs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CheckJointStateResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="messages">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Messages</a><a class="headerlink" href="#messages" title="Link to this heading"></a></h2>
+<section id="system-state">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">System State</a><a class="headerlink" href="#system-state" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="controller.msg.SystemState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.msg.</span></span><span class="sig-name descname"><span class="pre">SystemState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/msg/_SystemState.html#SystemState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.msg.SystemState" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="controller.msg.SystemState.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/msg/_SystemState.html#SystemState.deserialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.msg.SystemState.deserialize" title="Link to this definition"></a></dt>
+<dd><p>unpack serialized message in str into this message instance
+:param str: byte array of serialized message, <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.msg.SystemState.deserialize_numpy">
+<span class="sig-name descname"><span class="pre">deserialize_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numpy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/msg/_SystemState.html#SystemState.deserialize_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.msg.SystemState.deserialize_numpy" title="Link to this definition"></a></dt>
+<dd><p>unpack serialized message in str into this message instance using numpy for array types
+:param str: byte array of serialized message, <code class="docutils literal notranslate"><span class="pre">str</span></code>
+:param numpy: numpy python module</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.msg.SystemState.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/msg/_SystemState.html#SystemState.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.msg.SystemState.serialize" title="Link to this definition"></a></dt>
+<dd><p>serialize message into buffer
+:param buff: buffer, <code class="docutils literal notranslate"><span class="pre">StringIO</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.msg.SystemState.serialize_numpy">
+<span class="sig-name descname"><span class="pre">serialize_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numpy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/msg/_SystemState.html#SystemState.serialize_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.msg.SystemState.serialize_numpy" title="Link to this definition"></a></dt>
+<dd><p>serialize message with numpy array types into buffer
+:param buff: buffer, <code class="docutils literal notranslate"><span class="pre">StringIO</span></code>
+:param numpy: numpy python module</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Packages Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="perception.html" class="btn btn-neutral float-right" title="Perception Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

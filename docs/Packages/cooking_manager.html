@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cooking Manager Package &mdash; Cooking Robot 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Unit Testing KPIs for TIAGo Cooking Assistant" href="../kpis_and_testing/index.html" />
+    <link rel="prev" title="Perception Package" href="perception.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Cooking Robot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-the-system">Running the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/component_diagram.html">Component Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Packages Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#package-details">Package Details</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controller.html">Controller Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="perception.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="perception.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="perception.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services">Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kpis_and_testing/index.html">Unit Testing KPIs for TIAGo Cooking Assistant</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#recipe-tracking-kpis">1. Recipe Tracking KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#action-planning-kpis">2. Action Planning KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#human-command-manager-kpis">3. Human Command Manager KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#cross-component-kpis">4. Cross-Component KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpis_and_testing/index.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials.html#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Packages Documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#package-details">Package Details</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="controller.html">Controller Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="perception.html">Perception Package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Cooking Manager Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Cooking Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Packages Documentation</a></li>
+      <li class="breadcrumb-item active">Cooking Manager Package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Packages/cooking_manager.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cooking-manager-package">
+<h1>Cooking Manager Package<a class="headerlink" href="#cooking-manager-package" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#package-overview" id="id1">Package Overview</a></p></li>
+<li><p><a class="reference internal" href="#nodes" id="id2">Nodes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-scripts.recipe_tracker" id="id3">Recipe Tracker</a></p></li>
+<li><p><a class="reference internal" href="#module-scripts.human_command_manager" id="id4">Human Command Manager</a></p></li>
+<li><p><a class="reference internal" href="#module-scripts.action_planner" id="id5">Action Planner</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#messages" id="id6">Messages</a></p>
+<ul>
+<li><p><a class="reference internal" href="#system-state" id="id7">System State</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#services" id="id8">Services</a></p>
+<ul>
+<li><p><a class="reference internal" href="#send-action-sequence" id="id9">Send Action Sequence</a></p></li>
+<li><p><a class="reference internal" href="#update-recipe" id="id10">Update Recipe</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#unit-tests" id="id11">Unit Tests</a></p></li>
+</ul>
+</nav>
+<section id="package-overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Package Overview</a><a class="headerlink" href="#package-overview" title="Link to this heading"></a></h2>
+<p>The controller manages the recipe excecution and humman command interpretation</p>
+</section>
+<section id="nodes">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Nodes</a><a class="headerlink" href="#nodes" title="Link to this heading"></a></h2>
+<section id="module-scripts.recipe_tracker">
+<span id="recipe-tracker"></span><h3><a class="toc-backref" href="#id3" role="doc-backlink">Recipe Tracker</a><a class="headerlink" href="#module-scripts.recipe_tracker" title="Link to this heading"></a></h3>
+<p>Tracks and manages cooking recipe steps.</p>
+<p><strong>ROS Interfaces:</strong></p>
+<dl class="simple">
+<dt>Service Clients:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/send_set_points</span></code> → <code class="xref py py-class docutils literal notranslate"><span class="pre">assignments.srv.CheckJointState</span></code> (Sends joint commands to Trajectory Manager)</p></li>
+</ul>
+</dd>
+<dt>Subscribers:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/objects_of_interest</span></code> (<a class="reference internal" href="perception.html#perception.msg.DetectedObjects" title="perception.msg.DetectedObjects"><code class="xref py py-class docutils literal notranslate"><span class="pre">perception.msg.DetectedObjects</span></code></a>)</p></li>
+</ul>
+</dd>
+<dt>Publishers:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/system_state</span></code> (<a class="reference internal" href="controller.html#controller.msg.SystemState" title="controller.msg.SystemState"><code class="xref py py-class docutils literal notranslate"><span class="pre">controller.msg.SystemState</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/action_index</span></code> (<code class="xref py py-class docutils literal notranslate"><span class="pre">std_msgs.msg.Int32</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="scripts.recipe_tracker.RecipeTracker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scripts.recipe_tracker.</span></span><span class="sig-name descname"><span class="pre">RecipeTracker</span></span><a class="reference internal" href="../_modules/scripts/recipe_tracker.html#RecipeTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.recipe_tracker.RecipeTracker" title="Link to this definition"></a></dt>
+<dd><p>Keeps track of the current recipe step and progress.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.recipe_tracker.RecipeTracker.handle_update_recipe">
+<span class="sig-name descname"><span class="pre">handle_update_recipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/recipe_tracker.html#RecipeTracker.handle_update_recipe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.recipe_tracker.RecipeTracker.handle_update_recipe" title="Link to this definition"></a></dt>
+<dd><p>Handles requests to update the current recipe.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.recipe_tracker.RecipeTracker.publish_current_step">
+<span class="sig-name descname"><span class="pre">publish_current_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/recipe_tracker.html#RecipeTracker.publish_current_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.recipe_tracker.RecipeTracker.publish_current_step" title="Link to this definition"></a></dt>
+<dd><p>Publishes the current recipe step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.recipe_tracker.RecipeTracker.update_progress">
+<span class="sig-name descname"><span class="pre">update_progress</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/recipe_tracker.html#RecipeTracker.update_progress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.recipe_tracker.RecipeTracker.update_progress" title="Link to this definition"></a></dt>
+<dd><p>Updates progress based on system state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.recipe_tracker.RecipeTracker.update_system_state">
+<span class="sig-name descname"><span class="pre">update_system_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/recipe_tracker.html#RecipeTracker.update_system_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.recipe_tracker.RecipeTracker.update_system_state" title="Link to this definition"></a></dt>
+<dd><p>Updates the current system state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scripts.human_command_manager">
+<span id="human-command-manager"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">Human Command Manager</a><a class="headerlink" href="#module-scripts.human_command_manager" title="Link to this heading"></a></h3>
+<p>Human Command Manager Node.</p>
+<p>This node manages human verbal commands by validating them against system state
+and current action sequences. It coordinates between verbal commands, system state,
+and action sequences to determine when commands can be safely executed.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="scripts.human_command_manager.HumanCommandManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scripts.human_command_manager.</span></span><span class="sig-name descname"><span class="pre">HumanCommandManager</span></span><a class="reference internal" href="../_modules/scripts/human_command_manager.html#HumanCommandManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.human_command_manager.HumanCommandManager" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manages validation and publishing of human commands based on system context.</p>
+<p>This class evaluates verbal commands against system state and current action
+sequences to determine if they can be safely executed, preventing conflicts
+with ongoing operations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.human_command_manager.HumanCommandManager.actions_callback">
+<span class="sig-name descname"><span class="pre">actions_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/human_command_manager.html#HumanCommandManager.actions_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.human_command_manager.HumanCommandManager.actions_callback" title="Link to this definition"></a></dt>
+<dd><p>Service callback for receiving action sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference internal" href="#cooking_manager.srv.SendActionSeq" title="cooking_manager.srv.SendActionSeq"><em>SendActionSeq</em></a>) – The incoming action sequence request.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Always returns True indicating successful receipt.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SendActionSeqResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.human_command_manager.HumanCommandManager.evaluate_and_publish">
+<span class="sig-name descname"><span class="pre">evaluate_and_publish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/human_command_manager.html#HumanCommandManager.evaluate_and_publish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.human_command_manager.HumanCommandManager.evaluate_and_publish" title="Link to this definition"></a></dt>
+<dd><p>Evaluates current context and publishes valid commands when appropriate.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.human_command_manager.HumanCommandManager.is_non_urgent_ratio_low">
+<span class="sig-name descname"><span class="pre">is_non_urgent_ratio_low</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/human_command_manager.html#HumanCommandManager.is_non_urgent_ratio_low"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.human_command_manager.HumanCommandManager.is_non_urgent_ratio_low" title="Link to this definition"></a></dt>
+<dd><p>Determines if the current action sequence has sufficient non-urgent actions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if ratio of non-urgent actions is above threshold (50%), False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.human_command_manager.HumanCommandManager.publish_valid_command">
+<span class="sig-name descname"><span class="pre">publish_valid_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/human_command_manager.html#HumanCommandManager.publish_valid_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.human_command_manager.HumanCommandManager.publish_valid_command" title="Link to this definition"></a></dt>
+<dd><p>Publishes a validated command to the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>str</em>) – The command to publish.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.human_command_manager.HumanCommandManager.state_callback">
+<span class="sig-name descname"><span class="pre">state_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/human_command_manager.html#HumanCommandManager.state_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.human_command_manager.HumanCommandManager.state_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for system state updates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference internal" href="controller.html#controller.msg.SystemState" title="controller.msg.SystemState"><em>SystemState</em></a>) – The current system state message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.human_command_manager.HumanCommandManager.verbal_callback">
+<span class="sig-name descname"><span class="pre">verbal_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/human_command_manager.html#HumanCommandManager.verbal_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.human_command_manager.HumanCommandManager.verbal_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for processing new verbal commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>String</em>) – The incoming verbal command message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scripts.action_planner">
+<span id="action-planner"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Action Planner</a><a class="headerlink" href="#module-scripts.action_planner" title="Link to this heading"></a></h3>
+<p>Action Planner Node.</p>
+<p>This node translates recipe steps into actionable sequences and manages their execution.
+It handles both automated recipe steps and human intervention commands, coordinating
+between the recipe tracker, command monitor, and controller nodes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="scripts.action_planner.ActionPlanner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scripts.action_planner.</span></span><span class="sig-name descname"><span class="pre">ActionPlanner</span></span><a class="reference internal" href="../_modules/scripts/action_planner.html#ActionPlanner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.action_planner.ActionPlanner" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Converts recipe steps to action sequences and manages command insertion.</p>
+<p>This class maintains the current action sequence, handles human intervention commands,
+and coordinates with other system components to execute cooking actions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.action_planner.ActionPlanner.change_action_index_callback">
+<span class="sig-name descname"><span class="pre">change_action_index_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/action_planner.html#ActionPlanner.change_action_index_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.action_planner.ActionPlanner.change_action_index_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for current action index updates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>Int32</em>) – The current action index being executed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.action_planner.ActionPlanner.re_arrange_sequence">
+<span class="sig-name descname"><span class="pre">re_arrange_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_valid_cmd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/action_planner.html#ActionPlanner.re_arrange_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.action_planner.ActionPlanner.re_arrange_sequence" title="Link to this definition"></a></dt>
+<dd><p>Inserts human commands into the action sequence based on urgency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action_sequence</strong> (<em>list</em>) – Current sequence of actions.</p></li>
+<li><p><strong>new_valid_cmd</strong> (<em>str</em>) – Valid human command to insert.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.action_planner.ActionPlanner.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/action_planner.html#ActionPlanner.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.action_planner.ActionPlanner.run" title="Link to this definition"></a></dt>
+<dd><p>Main execution loop for processing steps and commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – Timer event (unused).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.action_planner.ActionPlanner.send_sequence">
+<span class="sig-name descname"><span class="pre">send_sequence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/action_planner.html#ActionPlanner.send_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.action_planner.ActionPlanner.send_sequence" title="Link to this definition"></a></dt>
+<dd><p>Sends the current action sequence to controller and command monitor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.action_planner.ActionPlanner.step_callback">
+<span class="sig-name descname"><span class="pre">step_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/action_planner.html#ActionPlanner.step_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.action_planner.ActionPlanner.step_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for recipe step updates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference internal" href="#cooking_manager.msg.RecipeStep" title="cooking_manager.msg.RecipeStep"><em>RecipeStep</em></a>) – The current recipe step message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.action_planner.ActionPlanner.step_parsing">
+<span class="sig-name descname"><span class="pre">step_parsing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/action_planner.html#ActionPlanner.step_parsing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.action_planner.ActionPlanner.step_parsing" title="Link to this definition"></a></dt>
+<dd><p>Maps recipe steps to action sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>current_step</strong> (<em>str</em>) – The current recipe step to parse.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.action_planner.ActionPlanner.valid_command_callback">
+<span class="sig-name descname"><span class="pre">valid_command_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scripts/action_planner.html#ActionPlanner.valid_command_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.action_planner.ActionPlanner.valid_command_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for valid human commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>String</em>) – The validated human command message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="messages">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Messages</a><a class="headerlink" href="#messages" title="Link to this heading"></a></h2>
+<section id="system-state">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">System State</a><a class="headerlink" href="#system-state" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="cooking_manager.msg.RecipeStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cooking_manager.msg.</span></span><span class="sig-name descname"><span class="pre">RecipeStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cooking_manager/msg/_RecipeStep.html#RecipeStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cooking_manager.msg.RecipeStep" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cooking_manager.msg.RecipeStep.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cooking_manager/msg/_RecipeStep.html#RecipeStep.deserialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cooking_manager.msg.RecipeStep.deserialize" title="Link to this definition"></a></dt>
+<dd><p>unpack serialized message in str into this message instance
+:param str: byte array of serialized message, <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cooking_manager.msg.RecipeStep.deserialize_numpy">
+<span class="sig-name descname"><span class="pre">deserialize_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numpy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cooking_manager/msg/_RecipeStep.html#RecipeStep.deserialize_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cooking_manager.msg.RecipeStep.deserialize_numpy" title="Link to this definition"></a></dt>
+<dd><p>unpack serialized message in str into this message instance using numpy for array types
+:param str: byte array of serialized message, <code class="docutils literal notranslate"><span class="pre">str</span></code>
+:param numpy: numpy python module</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cooking_manager.msg.RecipeStep.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cooking_manager/msg/_RecipeStep.html#RecipeStep.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cooking_manager.msg.RecipeStep.serialize" title="Link to this definition"></a></dt>
+<dd><p>serialize message into buffer
+:param buff: buffer, <code class="docutils literal notranslate"><span class="pre">StringIO</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cooking_manager.msg.RecipeStep.serialize_numpy">
+<span class="sig-name descname"><span class="pre">serialize_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numpy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cooking_manager/msg/_RecipeStep.html#RecipeStep.serialize_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cooking_manager.msg.RecipeStep.serialize_numpy" title="Link to this definition"></a></dt>
+<dd><p>serialize message with numpy array types into buffer
+:param buff: buffer, <code class="docutils literal notranslate"><span class="pre">StringIO</span></code>
+:param numpy: numpy python module</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="services">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Services</a><a class="headerlink" href="#services" title="Link to this heading"></a></h2>
+<section id="send-action-sequence">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Send Action Sequence</a><a class="headerlink" href="#send-action-sequence" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="cooking_manager.srv.SendActionSeq">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cooking_manager.srv.</span></span><span class="sig-name descname"><span class="pre">SendActionSeq</span></span><a class="reference internal" href="../_modules/cooking_manager/srv/_SendActionSeq.html#SendActionSeq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cooking_manager.srv.SendActionSeq" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</section>
+<section id="update-recipe">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Update Recipe</a><a class="headerlink" href="#update-recipe" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="cooking_manager.srv.UpdateRecipe">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cooking_manager.srv.</span></span><span class="sig-name descname"><span class="pre">UpdateRecipe</span></span><a class="reference internal" href="../_modules/cooking_manager/srv/_UpdateRecipe.html#UpdateRecipe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cooking_manager.srv.UpdateRecipe" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="unit-tests">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Unit Tests</a><a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="perception.html" class="btn btn-neutral float-left" title="Perception Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../kpis_and_testing/index.html" class="btn btn-neutral float-right" title="Unit Testing KPIs for TIAGo Cooking Assistant" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

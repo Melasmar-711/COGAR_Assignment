@@ -1,37 +1,48 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# conf.py
+import os
+import sys
+from datetime import datetime
 
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
-project = 'Cogar_Assignments'
-copyright = '2025, ABulanti'
-author = 'ABulanti'
-
-# -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
-
-extensions = []
-
-templates_path = ['_templates']
-exclude_patterns = []
+# Basic project info
+project = 'Cooking Robot'
+copyright = f'{datetime.now().year}, Your Name'
+author = 'Your Name'
+release = '1.0'
 
 
+# Add all necessary paths - including msg and srv directories
+base_path = os.path.abspath('../../src')
+sys.path.insert(0, base_path)
+sys.path.insert(0, os.path.join(base_path, 'controller'))
 
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
+sys.path.insert(0, os.path.join(base_path, 'perception'))
+
+sys.path.insert(0, os.path.join(base_path, 'cooking_manager'))
+
+# Add this to conf.py if using ROS workspace
+sys.path.insert(0, os.path.abspath('../../devel/lib/python3/dist-packages'))
+
+
+
+
+# Minimal extensions
+extensions = [
+    'sphinx.ext.autodoc',      # For Python docstrings
+    'sphinx.ext.viewcode',     # Add links to source code
+    'sphinx.ext.napoleon'      # Google-style docstrings
+]
+
+
+# RTD Theme settings
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
-html_show_sourcelink = False
 
-html_context = {
-    "display_github": True,
-    "github_user": "AleBulanti",
-    "github_repo": "Assignment_Cogar",
-    "github_version": "main",
-    "conf_py_path": "/docs/source/",
+# Theme options
+html_theme_options = {
+    'navigation_depth': 4,
+    'collapse_navigation': False,
+    'sticky_navigation': True
 }
+

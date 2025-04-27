@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Testing KPIs for TIAGo Cooking Assistant &mdash; Cooking Robot 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorials" href="../tutorials.html" />
+    <link rel="prev" title="Cooking Manager Package" href="../Packages/cooking_manager.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Cooking Robot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-the-system">Running the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/component_diagram.html">Component Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Packages/controller.html">Controller Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/controller.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/controller.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/controller.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Packages/perception.html">Perception Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/perception.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/perception.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/perception.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Packages/cooking_manager.html">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/cooking_manager.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/cooking_manager.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/cooking_manager.html#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/cooking_manager.html#services">Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/cooking_manager.html#unit-tests">Unit Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unit Testing KPIs for TIAGo Cooking Assistant</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recipe-tracking-kpis">1. Recipe Tracking KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#action-planning-kpis">2. Action Planning KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#human-command-manager-kpis">3. Human Command Manager KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cross-component-kpis">4. Cross-Component KPIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials.html#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/controller.html">Controller Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/perception.html">Perception Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Packages/cooking_manager.html">Cooking Manager Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Cooking Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Unit Testing KPIs for TIAGo Cooking Assistant</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/kpis_and_testing/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-testing-kpis-for-tiago-cooking-assistant">
+<h1>Unit Testing KPIs for TIAGo Cooking Assistant<a class="headerlink" href="#unit-testing-kpis-for-tiago-cooking-assistant" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This document defines the Key Performance Indicators (KPIs) for unit testing the cognitive architecture of the TIAGo Cooking Assistant. These KPIs verify component behavior, validate system interactions, and assess real-world scenario handling capabilities.</p>
+</section>
+<section id="recipe-tracking-kpis">
+<h2>1. Recipe Tracking KPIs<a class="headerlink" href="#recipe-tracking-kpis" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>KPI</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Success Criteria</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Recipe Parsing Reliability</p></td>
+<td><p>Robustness in parsing JSON recipes</p></td>
+<td><p>100% success for valid JSON; graceful
+rejection of invalid inputs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Correct Step Recording</p></td>
+<td><p>Updates execution history after step completion</p></td>
+<td><p>100% of completed actions logged</p></td>
+</tr>
+<tr class="row-even"><td><p>Step Transition Accuracy</p></td>
+<td><p>Correct step transitions after IDLE period</p></td>
+<td><p>100% correct increments after 3s IDLE</p></td>
+</tr>
+<tr class="row-odd"><td><p>Step Order Integrity</p></td>
+<td><p>Sequence matches predefined recipe</p></td>
+<td><p>100% sequence consistency</p></td>
+</tr>
+<tr class="row-even"><td><p>Missing Step Detection</p></td>
+<td><p>Detects skipped steps</p></td>
+<td><p>95%+ detection accuracy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Recipe Representation</p></td>
+<td><p>Retrieves correct current/next step</p></td>
+<td><p>100% correct retrieval</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="action-planning-kpis">
+<h2>2. Action Planning KPIs<a class="headerlink" href="#action-planning-kpis" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>KPI</p></th>
+<th class="head" colspan="2"><p>Description                                      | Success Criteria</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Action Sequence Mapping</p></td>
+<td colspan="2"><p>Generates correct action sequences               | 100% match with predefined mappings</p></td>
+</tr>
+<tr class="row-odd"><td><p>Command Insertion Correctness</p></td>
+<td colspan="2"><p>Inserts commands per urgency rules               | ≥95% follow urgency policy</p></td>
+</tr>
+<tr class="row-even"><td><p>Planning Responsiveness</p></td>
+<td colspan="2"><p>Time to generate action sequences                | &lt;200ms from step reception</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interruption Handling</p></td>
+<td colspan="2"><p>Behavior during sequence interruptions           | 100% correct restructuring</p></td>
+</tr>
+<tr class="row-even"><td><p>State Synchronization</p></td>
+<td colspan="2"><p>Internal index matches controller feedback       | 0% desync</p></td>
+</tr>
+<tr class="row-odd"><td><p>Service Availability Handling</p></td>
+<td colspan="2"><p>Behavior during service unavailability           | Graceful retries without crashes</p></td>
+</tr>
+<tr class="row-even"><td><p>Next Action Correctness</p></td>
+<td colspan="2"><p>Chooses correct next action                      | ≥95% correct decisions</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dynamic Adjustment Capability</p></td>
+<td colspan="2"><p>Adjusts plans for unexpected events              | Correct in ≥90% of cases</p></td>
+</tr>
+<tr class="row-even"><td><p>Plan Consistency</p></td>
+<td colspan="2"><p>Logical coherence after adjustments              | 100% verification</p></td>
+</tr>
+<tr class="row-odd"><td><p>Response Time</p></td>
+<td colspan="2"><p>Time to generate next action                     | ≤500ms per decision</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="human-command-manager-kpis">
+<h2>3. Human Command Manager KPIs<a class="headerlink" href="#human-command-manager-kpis" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>KPI</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Success Criteria</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Command Recognition Accuracy</p></td>
+<td><p>Identifies verbal commands</p></td>
+<td><p>≥90% accuracy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Conflict Detection Rate</p></td>
+<td><p>Identifies command-recipe conflicts</p></td>
+<td><p>≥95% detection</p></td>
+</tr>
+<tr class="row-even"><td><p>Correct Decision on Conflicts</p></td>
+<td><p>Appropriately accepts/rejects commands</p></td>
+<td><p>≥95% correct decisions</p></td>
+</tr>
+<tr class="row-odd"><td><p>Conflict Handling Response</p></td>
+<td><p>Time to resolve conflicts</p></td>
+<td><p>≤800ms average</p></td>
+</tr>
+<tr class="row-even"><td><p>Non-Urgent Ratio Calculation</p></td>
+<td><p>Calculates urgency ratios accurately</p></td>
+<td><p>100% accuracy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Response Latency</p></td>
+<td><p>Time to process verbal commands</p></td>
+<td><p>&lt;100ms from receipt</p></td>
+</tr>
+<tr class="row-even"><td><p>Sequence Update Handling</p></td>
+<td><p>Robustness during concurrent updates</p></td>
+<td><p>0% corruption or data loss</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cross-component-kpis">
+<h2>4. Cross-Component KPIs<a class="headerlink" href="#cross-component-kpis" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>KPI</p></th>
+<th class="head"><p>Metric</p></th>
+<th class="head"><p>Testing Approach</p></th>
+<th class="head"><p>Success Criteria</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>End-to-End Decision Latency</p></td>
+<td><p>&lt;500ms from
+command to action</p></td>
+<td><p>Full system testing</p></td>
+<td><p>Response within latency constraint</p></td>
+</tr>
+<tr class="row-odd"><td><p>Error Recovery</p></td>
+<td><p>100% recovery
+from malformed
+commands</p></td>
+<td><p>Inject invalid
+commands</p></td>
+<td><p>Maintains safe operation</p></td>
+</tr>
+<tr class="row-even"><td><p>Concurrency Performance</p></td>
+<td><p>&lt;5% drop under
+10x load</p></td>
+<td><p>Stress testing</p></td>
+<td><p>Maintains responsiveness</p></td>
+</tr>
+<tr class="row-odd"><td><p>Memory Leak Resistance</p></td>
+<td><p>&lt;1% memory
+increase after
+1000 cycles</p></td>
+<td><p>Long-term stress
+testing</p></td>
+<td><p>Stable memory usage</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>These KPIs provide a structured methodology to assess the performance and correctness of the cognitive architecture. Successful validation establishes a solid foundation for integration testing and real-world deployment.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Packages/cooking_manager.html" class="btn btn-neutral float-left" title="Cooking Manager Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorials.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

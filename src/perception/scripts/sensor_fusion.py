@@ -1,10 +1,23 @@
 #!/usr/bin/env python
+"""Sensor Fusion Node.
+
+This node combines data from multiple sensors (LIDAR, sonar, depth camera, and point cloud)
+to create a unified representation of the environment. It ensures temporal consistency
+between sensor readings before publishing fused data.
+"""
 
 import rospy
 from sensor_msgs.msg import LaserScan, Range, Image, PointCloud2
 
 class SensorFusionNode:
+    """Fuses data from multiple sensors into a unified point cloud representation.
+    
+    This node subscribes to various sensor topics and publishes fused point cloud data
+    only when all sensor readings are temporally consistent (within a defined threshold).
+    """
+
     def __init__(self):
+        """Initializes the sensor fusion node with subscribers, publishers, and state variables."""
         rospy.init_node('sensor_fusion_node')
 
         # Initialize last received times
@@ -29,19 +42,44 @@ class SensorFusionNode:
         rospy.Timer(rospy.Duration(0.05), self.check_and_publish)
 
     def lidar_callback(self, msg):
+        """Callback for LIDAR scan messages.
+        
+        Args:
+            msg (LaserScan): The incoming LIDAR scan message.
+        """
         self.lidar_time = rospy.Time.now()
 
     def sonar_callback(self, msg):
+        """Callback for sonar range messages.
+        
+        Args:
+            msg (Range): The incoming sonar range message.
+        """
         self.sonar_time = rospy.Time.now()
 
     def depth_callback(self, msg):
+        """Callback for depth image messages.
+        
+        Args:
+            msg (Image): The incoming depth image message.
+        """
         self.depth_time = rospy.Time.now()
 
     def cloud_callback(self, msg):
+        """Callback for point cloud messages.
+        
+        Args:
+            msg (PointCloud2): The incoming point cloud message.
+        """
         self.latest_cloud_point_msg = msg
         self.cloud_time = rospy.Time.now()
 
     def check_and_publish(self, event):
+        """Checks sensor data timestamps and publishes fused data if conditions are met.
+        
+        Args:
+            event: Timer event (unused).
+        """
         if None in (self.lidar_time, self.sonar_time, self.depth_time, self.cloud_time):
             # Not all sensors received yet
             return

@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>assignments.scripts.arm_motion_service &mdash; Cooking Robot 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Cooking Robot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#running-the-system">Running the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/component_diagram.html">Component Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/controller.html">Controller Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/controller.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/controller.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/controller.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/perception.html">Perception Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/perception.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/perception.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/perception.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/cooking_manager.html">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/service_provided_with_assignment.html">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/service_provided_with_assignment.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/service_provided_with_assignment.html#services">Services</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials.html#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/controller.html">Controller Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/perception.html">Perception Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html">Cooking Manager Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/service_provided_with_assignment.html">Cooking Manager Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cooking Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">assignments.scripts.arm_motion_service</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for assignments.scripts.arm_motion_service</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">assignments.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">CheckJointState</span><span class="p">,</span> <span class="n">CheckJointStateResponse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">expected_joint_count</span> <span class="o">=</span> <span class="mi">7</span>
+
+<div class="viewcode-block" id="check_joint_state">
+<a class="viewcode-back" href="../../../Packages/service_provided_with_assignment.html#assignments.scripts.arm_motion_service.check_joint_state">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_joint_state</span><span class="p">(</span><span class="n">req</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Service callback that checks the dimensions of the provided JointState request and returns whether the request is reachable.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Received joint state for comparison.&quot;</span><span class="p">)</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Pose unreachable&quot;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">CheckJointStateResponse</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Check if the dimensions of positions, velocities, and efforts match the expected joint count</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected_joint_count</span> <span class="ow">and</span> \
+       <span class="nb">len</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">velocities</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected_joint_count</span> <span class="ow">and</span> \
+       <span class="nb">len</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">efforts</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected_joint_count</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Joint state dimensions match.&quot;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;The arm was moved!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">CheckJointStateResponse</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Joint state does not match.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">CheckJointStateResponse</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="joint_state_service">
+<a class="viewcode-back" href="../../../Packages/service_provided_with_assignment.html#assignments.scripts.arm_motion_service.joint_state_service">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">joint_state_service</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initializes the ROS service server that checks the dimensions of the joint state and returns whether the request is reachable.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;joint_state_service&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Create the service that listens for requests</span>
+    <span class="n">service</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Service</span><span class="p">(</span><span class="s1">&#39;/check_reachable_pose&#39;</span><span class="p">,</span> <span class="n">CheckJointState</span><span class="p">,</span> <span class="n">check_joint_state</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Joint state service is ready!&quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">joint_state_service</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

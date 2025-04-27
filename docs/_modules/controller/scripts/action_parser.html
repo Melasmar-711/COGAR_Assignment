@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>controller.scripts.action_parser &mdash; Cooking Robot 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Cooking Robot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#running-the-system">Running the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/component_diagram.html">Component Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/controller.html">Controller Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/controller.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/controller.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/controller.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/perception.html">Perception Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/perception.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/perception.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/perception.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/cooking_manager.html">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#services">Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html#unit-tests">Unit Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials.html#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/controller.html">Controller Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/perception.html">Perception Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../Packages/cooking_manager.html">Cooking Manager Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cooking Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">controller.scripts.action_parser</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for controller.scripts.action_parser</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">assignments.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">CheckJointState</span><span class="p">,</span> <span class="n">CheckJointStateRequest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Int32</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">perception.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">DetectedObjects</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">cooking_manager.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">SendActionSeq</span><span class="p">,</span> <span class="n">SendActionSeqResponse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">controller.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemState</span>
+
+<div class="viewcode-block" id="action_parser">
+<a class="viewcode-back" href="../../../Packages/controller.html#controller.scripts.action_parser.action_parser">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">action_parser</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses and executes action sequences for the robot controller.</span>
+<span class="sd">    </span>
+<span class="sd">    This node receives action sequences from the planner, manages their execution,</span>
+<span class="sd">    and coordinates with other system components including trajectory management</span>
+<span class="sd">    and state monitoring.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the action parser node with services, publishers, and subscribers.&quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;action_parser&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;action_parser: node started&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">received_sequences</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interrupted</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span> <span class="o">=</span> <span class="n">SystemState</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;IDLE&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev_action_sequence</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Create service client to get the trajectory to follow</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Waiting for /send_set_points service...&quot;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/send_set_points&#39;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Service /send_set_points is available&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_trajectory_send</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/send_set_points&#39;</span><span class="p">,</span> <span class="n">CheckJointState</span><span class="p">)</span>
+
+        <span class="c1"># Publisher for sending system state to human command monitor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_publisher</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/system_state&#39;</span><span class="p">,</span> <span class="n">SystemState</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Publisher for action index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_index_publisher</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;action_index&#39;</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Service to receive action sequences</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_action_sequence_service</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Service</span><span class="p">(</span><span class="s1">&#39;/action_sequence_to_controller&#39;</span><span class="p">,</span> <span class="n">SendActionSeq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_callback</span><span class="p">)</span>
+
+        <span class="c1"># Subscriber for detected objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subscriber</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;/objects_of_interest&#39;</span><span class="p">,</span> <span class="n">DetectedObjects</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_callback</span><span class="p">)</span>
+        
+        <span class="c1"># Timers</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">.1</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">publishing</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+
+<div class="viewcode-block" id="action_parser.object_callback">
+<a class="viewcode-back" href="../../../Packages/controller.html#controller.scripts.action_parser.action_parser.object_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">object_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback for detected objects from perception node.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            msg (DetectedObjects): Message containing detected objects and their positions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">types</span><span class="p">)):</span>
+            <span class="n">object_type</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">object_position</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">poses</span><span class="o">.</span><span class="n">poses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">position</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="n">object_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">object_position</span></div>
+
+            <span class="c1">#rospy.loginfo(f&quot;Detected {object_type} at position {object_position}&quot;)</span>
+
+<div class="viewcode-block" id="action_parser.sequence_callback">
+<a class="viewcode-back" href="../../../Packages/controller.html#controller.scripts.action_parser.action_parser.sequence_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sequence_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Service callback for receiving action sequences from planner.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            msg (SendActionSeq): Service request containing the action sequence.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            SendActionSeqResponse: Always returns True indicating successful receipt.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Convert the incoming string message to a list and append it to received_sequences</span>
+        <span class="n">new_seq</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">action_sequence</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interrupted</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">interrupted</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">received_sequences</span> <span class="o">=</span> <span class="n">new_seq</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">interrupted</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">action_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received action sequence: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">received_sequences</span><span class="si">}</span><span class="s2"> with interrupted state: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">interrupted</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SendActionSeqResponse</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="action_parser.send_set_points">
+<a class="viewcode-back" href="../../../Packages/controller.html#controller.scripts.action_parser.action_parser.send_set_points">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_set_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sends joint set points to trajectory manager.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if set points were sent successfully, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create a dummy CheckJointStateRequest</span>
+        <span class="n">joint_state_request</span> <span class="o">=</span> <span class="n">CheckJointStateRequest</span><span class="p">()</span>
+        <span class="n">joint_state_request</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
+        <span class="n">joint_state_request</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
+        <span class="n">joint_state_request</span><span class="o">.</span><span class="n">efforts</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
+
+        <span class="n">success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_trajectory_send</span><span class="p">(</span><span class="n">joint_state_request</span><span class="p">)</span>
+
+        <span class="c1"># Dummy logic to make failure states</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span> <span class="ow">and</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;FAILURE&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state_publisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">success</span></div>
+
+
+<div class="viewcode-block" id="action_parser.publishing">
+<a class="viewcode-back" href="../../../Packages/controller.html#controller.scripts.action_parser.action_parser.publishing">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">publishing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Periodically publishes system state and action index.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            event: Timer event (unused).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;current action sequence: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">received_sequences</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;system state: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_publisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_index_publisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_index</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="action_parser.run">
+<a class="viewcode-back" href="../../../Packages/controller.html#controller.scripts.action_parser.action_parser.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Main execution loop for processing action sequences.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            event: Timer event (unused).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">received_sequences</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;IDLE&quot;</span>
+            <span class="k">return</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_index</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">received_sequences</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">received_sequences</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;EXECUTING&quot;</span>
+            <span class="n">sucess</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_set_points</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">action_index</span> <span class="o">+=</span> <span class="mi">1</span></div>
+</div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">action_parser_node</span> <span class="o">=</span> <span class="n">action_parser</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

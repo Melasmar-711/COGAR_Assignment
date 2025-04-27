@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scripts.recipe_tracker &mdash; Cooking Robot 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Cooking Robot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#running-the-system">Running the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/component_diagram.html">Component Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/controller.html">Controller Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/controller.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/controller.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/controller.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/perception.html">Perception Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/perception.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/perception.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/perception.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/cooking_manager.html">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#services">Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html#unit-tests">Unit Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials.html#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Packages/index.html">Packages Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/index.html#package-details">Package Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/controller.html">Controller Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/perception.html">Perception Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Packages/cooking_manager.html">Cooking Manager Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../Packages/index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Cooking Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scripts.recipe_tracker</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for scripts.recipe_tracker</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;Tracks and manages cooking recipe steps.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">cooking_manager.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecipeStep</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">controller.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cooking_manager.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">UpdateRecipe</span><span class="p">,</span> <span class="n">UpdateRecipeResponse</span>  
+<span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<div class="viewcode-block" id="RecipeTracker">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.recipe_tracker.RecipeTracker">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RecipeTracker</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Keeps track of the current recipe step and progress.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets up the recipe tracker with default values.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curr_step_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_idle_start_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">was_idle</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s2">&quot;recipe_step&quot;</span><span class="p">,</span> <span class="n">RecipeStep</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;system_state&quot;</span><span class="p">,</span> <span class="n">SystemState</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_system_state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">publish_current_step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recipe_srv</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Service</span><span class="p">(</span><span class="s2">&quot;update_recipe&quot;</span><span class="p">,</span> <span class="n">UpdateRecipe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_update_recipe</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="RecipeTracker.update_system_state">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.recipe_tracker.RecipeTracker.update_system_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_system_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system_state</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the current system state.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span> <span class="o">=</span> <span class="n">system_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_progress</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="RecipeTracker.handle_update_recipe">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.recipe_tracker.RecipeTracker.handle_update_recipe">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_update_recipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Handles requests to update the current recipe.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">recipe_json</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curr_step_idx</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="n">UpdateRecipeResponse</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">UpdateRecipeResponse</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RecipeTracker.publish_current_step">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.recipe_tracker.RecipeTracker.publish_current_step">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">publish_current_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Publishes the current recipe step.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_step_idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="p">[</span><span class="s2">&quot;steps&quot;</span><span class="p">]):</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="n">RecipeStep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="p">[</span><span class="s2">&quot;steps&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_step_idx</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">step</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RecipeTracker.update_progress">
+<a class="viewcode-back" href="../../Packages/cooking_manager.html#scripts.recipe_tracker.RecipeTracker.update_progress">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates progress based on system state.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">recipe</span><span class="p">:</span>
+            <span class="k">return</span>
+            
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;IDLE&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">was_idle</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_idle_start_time</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">system_idle_start_time</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_idle_start_time</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">curr_step_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">was_idle</span> <span class="o">=</span> <span class="kc">True</span>    
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;EXECUTING&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_idle_start_time</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">was_idle</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">system_state</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;FAILURE&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_idle_start_time</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">was_idle</span> <span class="o">=</span> <span class="kc">False</span></div>
+</div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;recipe_tracker&#39;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Recipe Tracker Node Started&quot;</span><span class="p">)</span>
+    <span class="n">tracker</span> <span class="o">=</span> <span class="n">RecipeTracker</span><span class="p">()</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

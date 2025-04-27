@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+"""Dummy SLAM Node.
+
+This node simulates a SLAM (Simultaneous Localization and Mapping) system by publishing
+dummy map and odometry data in response to point cloud inputs. It serves as a placeholder
+for actual SLAM algorithms during development and testing.
+"""
 
 import rospy
 from sensor_msgs.msg import PointCloud2
@@ -6,7 +12,14 @@ from nav_msgs.msg import OccupancyGrid, Odometry
 import random
 
 class DummySLAMNode:
+    """Simulates SLAM functionality by generating dummy map and odometry data.
+    
+    This node publishes a static empty map and random robot positions to test
+    navigation and mapping systems without requiring actual SLAM processing.
+    """
+
     def __init__(self):
+        """Initializes the dummy SLAM node with publishers and subscribers."""
         rospy.init_node('slam_node')
 
         # Publishers
@@ -19,8 +32,12 @@ class DummySLAMNode:
         rospy.loginfo("Dummy SLAM Node Initialized")
 
     def cloud_callback(self, cloud_msg):
+        """Callback for point cloud messages that triggers dummy SLAM outputs.
+        
+        Args:
+            cloud_msg (PointCloud2): The incoming fused point cloud message.
+        """
         # Every time we get new cloud data --> Publish dummy map + odom
-
         now = rospy.Time.now()
 
         # Dummy OccupancyGrid (simple empty map)
@@ -61,6 +78,7 @@ class DummySLAMNode:
         # rospy.loginfo("Published dummy robot location")
 
     def run(self):
+        """Main execution loop for the node."""
         rospy.spin()
 
 if __name__ == '__main__':

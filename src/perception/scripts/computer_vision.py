@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+"""Computer Vision Node.
+
+This node simulates computer vision processing by publishing dummy point cloud data
+and detected objects. It serves as a placeholder for actual computer vision algorithms,
+providing test data for other system components.
+"""
 
 import rospy
 from sensor_msgs.msg import Image, PointCloud2
@@ -8,7 +14,13 @@ from perception.msg import DetectedObjects
 import std_msgs.msg
 
 class ComputerVisionNode:
+    """Simulates computer vision processing for the cooking robot system.
+    
+    Publishes dummy point cloud data and detected objects to test system integration.
+    """
+
     def __init__(self):
+        """Initializes the computer vision node with publishers and subscribers."""
         rospy.init_node('computer_vision_node')
 
         # Publishers
@@ -21,6 +33,11 @@ class ComputerVisionNode:
         rospy.loginfo("Computer Vision Node Initialized")
 
     def rgbd_callback(self, msg):
+        """Callback for RGBD image processing.
+        
+        Args:
+            msg (Image): The incoming RGBD image message.
+        """
         header = std_msgs.msg.Header()
         header.stamp = rospy.Time.now()
         header.frame_id = "camera_link"
@@ -62,6 +79,7 @@ class ComputerVisionNode:
         # rospy.loginfo("Published dummy DetectedObjects")
 
     def run(self):
+        """Main execution loop for the node."""
         rospy.spin()
 
 if __name__ == '__main__':

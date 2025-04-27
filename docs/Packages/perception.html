@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perception Package &mdash; Cooking Robot 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cooking Manager Package" href="cooking_manager.html" />
+    <link rel="prev" title="Controller Package" href="controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Cooking Robot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-the-system">Running the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#running-integration-tests">Running Integration Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/component_diagram.html">Component Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/action_planing_state_machine_.html">action planing state machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/human_command_monitor_sequence_diagram.html">human command monitor sequence diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/recipe_tracking_activity_diagram.html">recipe tracking activity diiagram</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Packages Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#package-details">Package Details</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controller.html">Controller Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller.html#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Perception Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#messages">Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cooking_manager.html">Cooking Manager Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#messages">Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#services">Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html#unit-tests">Unit Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials.html#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Packages Documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#overview-of-packages">Overview of Packages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#package-details">Package Details</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="controller.html">Controller Package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Perception Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cooking_manager.html">Cooking Manager Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#inter-package-communication">Inter-Package Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Cooking Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Packages Documentation</a></li>
+      <li class="breadcrumb-item active">Perception Package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Packages/perception.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="perception-package">
+<h1>Perception Package<a class="headerlink" href="#perception-package" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#package-overview" id="id1">Package Overview</a></p></li>
+<li><p><a class="reference internal" href="#nodes" id="id2">Nodes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-perception.scripts.sensor_fusion" id="id3">Sensor Fusion</a></p></li>
+<li><p><a class="reference internal" href="#module-perception.scripts.slam" id="id4">SLAM</a></p></li>
+<li><p><a class="reference internal" href="#module-perception.scripts.computer_vision" id="id5">Computer Vision</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#messages" id="id6">Messages</a></p>
+<ul>
+<li><p><a class="reference internal" href="#system-state" id="id7">System State</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="package-overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Package Overview</a><a class="headerlink" href="#package-overview" title="Link to this heading"></a></h2>
+<p>The controller package manages the perception tasks and Slam.</p>
+</section>
+<section id="nodes">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Nodes</a><a class="headerlink" href="#nodes" title="Link to this heading"></a></h2>
+<section id="module-perception.scripts.sensor_fusion">
+<span id="sensor-fusion"></span><h3><a class="toc-backref" href="#id3" role="doc-backlink">Sensor Fusion</a><a class="headerlink" href="#module-perception.scripts.sensor_fusion" title="Link to this heading"></a></h3>
+<p>Sensor Fusion Node.</p>
+<p>This node combines data from multiple sensors (LIDAR, sonar, depth camera, and point cloud)
+to create a unified representation of the environment. It ensures temporal consistency
+between sensor readings before publishing fused data.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="perception.scripts.sensor_fusion.SensorFusionNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perception.scripts.sensor_fusion.</span></span><span class="sig-name descname"><span class="pre">SensorFusionNode</span></span><a class="reference internal" href="../_modules/perception/scripts/sensor_fusion.html#SensorFusionNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.sensor_fusion.SensorFusionNode" title="Link to this definition"></a></dt>
+<dd><p>Fuses data from multiple sensors into a unified point cloud representation.</p>
+<p>This node subscribes to various sensor topics and publishes fused point cloud data
+only when all sensor readings are temporally consistent (within a defined threshold).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.sensor_fusion.SensorFusionNode.check_and_publish">
+<span class="sig-name descname"><span class="pre">check_and_publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/sensor_fusion.html#SensorFusionNode.check_and_publish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.sensor_fusion.SensorFusionNode.check_and_publish" title="Link to this definition"></a></dt>
+<dd><p>Checks sensor data timestamps and publishes fused data if conditions are met.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – Timer event (unused).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.sensor_fusion.SensorFusionNode.cloud_callback">
+<span class="sig-name descname"><span class="pre">cloud_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/sensor_fusion.html#SensorFusionNode.cloud_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.sensor_fusion.SensorFusionNode.cloud_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for point cloud messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>PointCloud2</em>) – The incoming point cloud message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.sensor_fusion.SensorFusionNode.depth_callback">
+<span class="sig-name descname"><span class="pre">depth_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/sensor_fusion.html#SensorFusionNode.depth_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.sensor_fusion.SensorFusionNode.depth_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for depth image messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>Image</em>) – The incoming depth image message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.sensor_fusion.SensorFusionNode.lidar_callback">
+<span class="sig-name descname"><span class="pre">lidar_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/sensor_fusion.html#SensorFusionNode.lidar_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.sensor_fusion.SensorFusionNode.lidar_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for LIDAR scan messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>LaserScan</em>) – The incoming LIDAR scan message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.sensor_fusion.SensorFusionNode.sonar_callback">
+<span class="sig-name descname"><span class="pre">sonar_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/sensor_fusion.html#SensorFusionNode.sonar_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.sensor_fusion.SensorFusionNode.sonar_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for sonar range messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>Range</em>) – The incoming sonar range message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-perception.scripts.slam">
+<span id="slam"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">SLAM</a><a class="headerlink" href="#module-perception.scripts.slam" title="Link to this heading"></a></h3>
+<p>Dummy SLAM Node.</p>
+<p>This node simulates a SLAM (Simultaneous Localization and Mapping) system by publishing
+dummy map and odometry data in response to point cloud inputs. It serves as a placeholder
+for actual SLAM algorithms during development and testing.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="perception.scripts.slam.DummySLAMNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perception.scripts.slam.</span></span><span class="sig-name descname"><span class="pre">DummySLAMNode</span></span><a class="reference internal" href="../_modules/perception/scripts/slam.html#DummySLAMNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.slam.DummySLAMNode" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simulates SLAM functionality by generating dummy map and odometry data.</p>
+<p>This node publishes a static empty map and random robot positions to test
+navigation and mapping systems without requiring actual SLAM processing.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.slam.DummySLAMNode.cloud_callback">
+<span class="sig-name descname"><span class="pre">cloud_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cloud_msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/slam.html#DummySLAMNode.cloud_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.slam.DummySLAMNode.cloud_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for point cloud messages that triggers dummy SLAM outputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cloud_msg</strong> (<em>PointCloud2</em>) – The incoming fused point cloud message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.slam.DummySLAMNode.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/slam.html#DummySLAMNode.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.slam.DummySLAMNode.run" title="Link to this definition"></a></dt>
+<dd><p>Main execution loop for the node.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-perception.scripts.computer_vision">
+<span id="computer-vision"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Computer Vision</a><a class="headerlink" href="#module-perception.scripts.computer_vision" title="Link to this heading"></a></h3>
+<p>Computer Vision Node.</p>
+<p>This node simulates computer vision processing by publishing dummy point cloud data
+and detected objects. It serves as a placeholder for actual computer vision algorithms,
+providing test data for other system components.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="perception.scripts.computer_vision.ComputerVisionNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perception.scripts.computer_vision.</span></span><span class="sig-name descname"><span class="pre">ComputerVisionNode</span></span><a class="reference internal" href="../_modules/perception/scripts/computer_vision.html#ComputerVisionNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.computer_vision.ComputerVisionNode" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simulates computer vision processing for the cooking robot system.</p>
+<p>Publishes dummy point cloud data and detected objects to test system integration.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.computer_vision.ComputerVisionNode.rgbd_callback">
+<span class="sig-name descname"><span class="pre">rgbd_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/computer_vision.html#ComputerVisionNode.rgbd_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.computer_vision.ComputerVisionNode.rgbd_callback" title="Link to this definition"></a></dt>
+<dd><p>Callback for RGBD image processing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>Image</em>) – The incoming RGBD image message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.scripts.computer_vision.ComputerVisionNode.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/scripts/computer_vision.html#ComputerVisionNode.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.scripts.computer_vision.ComputerVisionNode.run" title="Link to this definition"></a></dt>
+<dd><p>Main execution loop for the node.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="messages">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Messages</a><a class="headerlink" href="#messages" title="Link to this heading"></a></h2>
+<section id="system-state">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">System State</a><a class="headerlink" href="#system-state" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="perception.msg.DetectedObjects">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perception.msg.</span></span><span class="sig-name descname"><span class="pre">DetectedObjects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/msg/_DetectedObjects.html#DetectedObjects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.msg.DetectedObjects" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="perception.msg.DetectedObjects.deserialize">
+<span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/msg/_DetectedObjects.html#DetectedObjects.deserialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.msg.DetectedObjects.deserialize" title="Link to this definition"></a></dt>
+<dd><p>unpack serialized message in str into this message instance
+:param str: byte array of serialized message, <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.msg.DetectedObjects.deserialize_numpy">
+<span class="sig-name descname"><span class="pre">deserialize_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numpy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/msg/_DetectedObjects.html#DetectedObjects.deserialize_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.msg.DetectedObjects.deserialize_numpy" title="Link to this definition"></a></dt>
+<dd><p>unpack serialized message in str into this message instance using numpy for array types
+:param str: byte array of serialized message, <code class="docutils literal notranslate"><span class="pre">str</span></code>
+:param numpy: numpy python module</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.msg.DetectedObjects.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/msg/_DetectedObjects.html#DetectedObjects.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.msg.DetectedObjects.serialize" title="Link to this definition"></a></dt>
+<dd><p>serialize message into buffer
+:param buff: buffer, <code class="docutils literal notranslate"><span class="pre">StringIO</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perception.msg.DetectedObjects.serialize_numpy">
+<span class="sig-name descname"><span class="pre">serialize_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numpy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/perception/msg/_DetectedObjects.html#DetectedObjects.serialize_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#perception.msg.DetectedObjects.serialize_numpy" title="Link to this definition"></a></dt>
+<dd><p>serialize message with numpy array types into buffer
+:param buff: buffer, <code class="docutils literal notranslate"><span class="pre">StringIO</span></code>
+:param numpy: numpy python module</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controller.html" class="btn btn-neutral float-left" title="Controller Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cooking_manager.html" class="btn btn-neutral float-right" title="Cooking Manager Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Your Name.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
