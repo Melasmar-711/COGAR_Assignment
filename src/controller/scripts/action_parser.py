@@ -72,7 +72,11 @@ class action_parser:
         # Convert the incoming string message to a list and append it to received_sequences
         new_seq=msg.action_sequence.split(",")
         self.interrupted=msg.interrupted
+
         self.received_sequences=new_seq
+
+        if(not self.interrupted):
+            self.action_index=0
         rospy.loginfo(f"Received action sequence: {self.received_sequences} with interrupted state: {self.interrupted}")
         return SendActionSeqResponse(True)
     
@@ -118,6 +122,8 @@ class action_parser:
 
 
         while not rospy.is_shutdown():
+
+            
             # Check if there are any received sequences
             if self.received_sequences!=self.prev_action_sequence : 
 
@@ -127,7 +133,7 @@ class action_parser:
                 for i in range(self.action_index,len(self.received_sequences)):
                     
                     #rospy.loginfo("legnth of received sequences: "+str(len(self.received_sequences)))
-
+                    
                     self.action_index=i
                     self.action_index_publisher.publish(self.action_index)
                     self.system_state.state="EXECUTING"
@@ -139,6 +145,7 @@ class action_parser:
                     rospy.sleep(2)
 
                     if self.interrupted:
+                        self.action_index+=1
                         break
 
             '''else:
@@ -161,7 +168,7 @@ class action_parser:
                 self.received_sequences = [] 
                 self.system_state.state="IDLE"
                 self.state_publisher.publish(self.system_state)
-                self.action_index=0
+                #self.action_index=0
                 self.action_index_publisher.publish(self.action_index)
                 rospy.sleep(1)
             else:
