@@ -48,41 +48,40 @@ class TestIntegrationTests(unittest.TestCase):
         self.logging_dict["system_state"].append(msg.state)
     
     def handle_action_index(self,msg):
-        # if len(self.logging_dict["action_indeces"]) ==0 or self.logging_dict["action_indeces"][-1] != msg.data:
-            # self.logging_dict["action_indeces"].append(msg.data)
-        self.logging_dict["action_indeces"].append(msg.data)
+        if len(self.logging_dict["action_indeces"]) ==0 or self.logging_dict["action_indeces"][-1] != msg.data:
+            self.logging_dict["action_indeces"].append(msg.data)
     
 
-    def test_recipe_success(self): 
-        '''
-        this test checks the step parsing function of the action planning module
-        '''
-        result = self.update_recipe_service_proxy(self.dummy_recipe_text)
-        self.assertTrue(result.success,"error while calling the recipe tracker service")
-
-        rospy.sleep(20)
-
-        self.assertEqual(self.logging_dict["system_state"][-1],"IDLE")
-        self.assertNotIn("FAILURE",self.logging_dict["system_state"])
-        self.assertIn("EXECUTING",self.logging_dict["system_state"])
-        # self.assertEqual(self.logging_dict["action_indeces"],[0,1,0,1,2,3,0,1,2])
-    
-    # def test_verbal_success(self): 
+    # def test_recipe_success(self): 
     #     '''
     #     this test checks the step parsing function of the action planning module
     #     '''
-
-
     #     result = self.update_recipe_service_proxy(self.dummy_recipe_text)
     #     self.assertTrue(result.success,"error while calling the recipe tracker service")
-    #     rospy.sleep(1)
-    #     self.verbal_command_publisher.publish("test verbal command")
-    #     rospy.sleep(30)
+
+    #     rospy.sleep(50)
 
     #     self.assertEqual(self.logging_dict["system_state"][-1],"IDLE")
     #     self.assertNotIn("FAILURE",self.logging_dict["system_state"])
     #     self.assertIn("EXECUTING",self.logging_dict["system_state"])
-        # self.assertEqual(self.logging_dict["action_indeces"],[0,1,0,1,2,3,0,1,2])
+    #     self.assertEqual(self.logging_dict["action_indeces"],[0,1,0,1,2,0,1,2])
+    
+    def test_verbal_success(self): 
+        '''
+        this test checks the step parsing function of the action planning module
+        '''
+
+
+        result = self.update_recipe_service_proxy(self.dummy_recipe_text)
+        self.assertTrue(result.success,"error while calling the recipe tracker service")
+        rospy.sleep(1)
+        self.verbal_command_publisher.publish("test verbal command")
+        rospy.sleep(55)
+
+        self.assertEqual(self.logging_dict["system_state"][-1],"IDLE")
+        self.assertNotIn("FAILURE",self.logging_dict["system_state"])
+        self.assertIn("EXECUTING",self.logging_dict["system_state"])
+        self.assertEqual(self.logging_dict["action_indeces"],[0,1,0,1,2,0,1,2])
 
 
 

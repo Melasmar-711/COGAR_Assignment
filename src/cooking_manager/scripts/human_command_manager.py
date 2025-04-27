@@ -31,7 +31,7 @@ class HumanCommandManager:
 
     def state_callback(self, msg):
         self._current_state = msg.state.upper()
-        rospy.loginfo(f"[STATE] Updated: {self._current_state}")
+        # rospy.loginfo(f"[STATE] Updated: {self._current_state}")
         self.evaluate_and_publish()
 
     def actions_callback(self, msg):

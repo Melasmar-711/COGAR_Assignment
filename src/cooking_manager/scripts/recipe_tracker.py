@@ -14,6 +14,7 @@ class RecipeTracker:
         self.curr_step_idx = 0
         self.system_state = None
         self.system_idle_start_time = None
+        self.was_idle = False
 
         self.step_pub = rospy.Publisher("recipe_step", RecipeStep, queue_size=10)
         rospy.Subscriber("system_state", SystemState, self.update_system_state)
@@ -58,20 +59,26 @@ class RecipeTracker:
 
     # Updates the progress based on external system state
     def update_progress(self) -> None:
-        if self.system_state is None:
+        if self.system_state is None or self.recipe is None:
             return
-
-        if self.system_state.state == "IDLE":
+        # rospy.loginfo(f"curr_step_idx {self.curr_step_idx}")
+        
+        if self.system_state.state == "IDLE" and not self.was_idle:
             if self.system_idle_start_time is None:
                 self.system_idle_start_time = rospy.get_time()
-            elif (rospy.get_time() - self.system_idle_start_time) > 3:
+            elif (rospy.get_time() - self.system_idle_start_time) > 1:
+                # rospy.loginfo(f"self.system_idle_start_time {self.system_idle_start_time}, time now {rospy.get_time()}, diff {(rospy.get_time() - self.system_idle_start_time)}")
                 self.curr_step_idx += 1
+                self.was_idle = True    
+
             
         elif self.system_state.state == "EXECUTING":
             self.system_idle_start_time = None
+            self.was_idle = False
             print("System executing, no update")
         elif self.system_state.state == "FAILURE":
             self.system_idle_start_time = None
+            self.was_idle = False
             print("System dailure, no update")
         
     

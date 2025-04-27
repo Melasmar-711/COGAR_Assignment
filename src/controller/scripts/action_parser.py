@@ -51,6 +51,8 @@ class action_parser:
 
         # Create a subscriber to get the objects of interest locations from perception node
         self.subscriber = rospy.Subscriber('/objects_of_interest', DetectedObjects, self.object_callback)
+        rospy.Timer(rospy.Duration(.1),self.publishing)
+        rospy.Timer(rospy.Duration(1.0),self.run)
 
 
 
@@ -111,69 +113,81 @@ class action_parser:
         return success    
 
 
-
-    def run(self):
+    def publishing(self,event):
+        rospy.loginfo(f"current action sequence: {self.received_sequences}")
+        rospy.loginfo(f"system state: {self.system_state}")
+        self.state_publisher.publish(self.system_state)
+        self.action_index_publisher.publish(self.action_index)
+    
+    def run(self,event):
         """
         Main loop for the action parser.
         """
+        if self.received_sequences is None:
+            self.system_state.state="IDLE"
+            return
+        
+        if self.action_index + 1 >= len(self.received_sequences):
+            self.received_sequences = None
+        else:
+            self.system_state.state="EXECUTING"
+            sucess=self.send_set_points()
+            self.action_index += 1
+        
 
-        self.state_publisher.publish(self.system_state)
 
-
-
-        while not rospy.is_shutdown():
+        # while not rospy.is_shutdown():
 
             
-            # Check if there are any received sequences
-            if self.received_sequences!=self.prev_action_sequence : 
+        #     # Check if there are any received sequences
+        #     if self.received_sequences!=self.prev_action_sequence : 
 
-                self.prev_action_sequence=self.received_sequences
+        #         self.prev_action_sequence=self.received_sequences
 
-                # Process the latest received sequence
-                for i in range(self.action_index,len(self.received_sequences)):
+        #         # Process the latest received sequence
+        #         for i in range(self.action_index,len(self.received_sequences)):
                     
-                    #rospy.loginfo("legnth of received sequences: "+str(len(self.received_sequences)))
+        #             #rospy.loginfo("legnth of received sequences: "+str(len(self.received_sequences)))
                     
-                    self.action_index=i
-                    self.action_index_publisher.publish(self.action_index)
-                    self.system_state.state="EXECUTING"
-                    self.state_publisher.publish(self.system_state)
-                    sucess=self.send_set_points()
+        #             self.action_index=i
+        #             self.system_state.state="EXECUTING"
+        #             self.state_publisher.publish(self.system_state)
+        #             sucess=self.send_set_points()
 
 
-                    rospy.loginfo(f"interrupt : {self.interrupted} ,Processed action --{self.received_sequences[self.action_index]} --  in sequence  done :{sucess} ")
-                    rospy.sleep(2)
+        #             rospy.loginfo(f"interrupt : {self.interrupted} ,Processed action --{self.received_sequences[self.action_index]} --  in sequence  done :{sucess} ")
+        #             rospy.sleep(2)
 
-                    if self.interrupted:
-                        self.action_index+=1
-                        break
+        #             if self.interrupted:
+        #                 self.action_index+=1
+        #                 break
 
-            '''else:
-                self.prev_action_sequence=self.received_sequences
-                for i in range(self.action_index,len(self.received_sequences)):
-                    self.action_index=i
-                    self.action_index_publisher.publish(self.action_index)
-                    self.system_state.state="EXECUTING"
-                    self.state_publisher.publish(self.system_state)
-                    sucess=self.send_set_points()
+        #     '''else:
+        #         self.prev_action_sequence=self.received_sequences
+        #         for i in range(self.action_index,len(self.received_sequences)):
+        #             self.action_index=i
+        #             self.action_index_publisher.publish(self.action_index)
+        #             self.system_state.state="EXECUTING"
+        #             self.state_publisher.publish(self.system_state)
+        #             sucess=self.send_set_points()
                    
 
 
-                    rospy.loginfo(f"Processed action --{self.received_sequences[i]} --  in sequence  done :{sucess} ")
-                    rospy.sleep(3)'''
+        #             rospy.loginfo(f"Processed action --{self.received_sequences[i]} --  in sequence  done :{sucess} ")
+        #             rospy.sleep(3)'''
                 
 
-            if self.interrupted==False:
-                # If the sequence is not interrupted, reset the action index and state
-                self.received_sequences = [] 
-                self.system_state.state="IDLE"
-                self.state_publisher.publish(self.system_state)
-                #self.action_index=0
-                self.action_index_publisher.publish(self.action_index)
-                rospy.sleep(1)
-            else:
-                self.interrupted=False 
-                rospy.sleep(1)
+        #     if self.interrupted==False:
+        #         # If the sequence is not interrupted, reset the action index and state
+        #         self.received_sequences = [] 
+        #         self.system_state.state="IDLE"
+        #         self.state_publisher.publish(self.system_state)
+        #         #self.action_index=0
+        #         self.action_index_publisher.publish(self.action_index)
+        #         rospy.sleep(1)
+        #     else:
+        #         self.interrupted=False 
+        #         rospy.sleep(1)
    
 
 
@@ -181,6 +195,7 @@ class action_parser:
 if __name__ == '__main__':
     try:
         action_parser_node = action_parser()
-        action_parser_node.run()
+        # action_parser_node.run()
+        rospy.spin()
     except rospy.ROSInterruptException:
         pass
