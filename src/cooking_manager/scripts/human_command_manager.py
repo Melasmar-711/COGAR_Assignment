@@ -75,6 +75,8 @@ class HumanCommandManager:
 
 if __name__ == "__main__":
     rospy.init_node("human_command_manager")
+    rospy.loginfo("Human Command Manager Node Started")
+    
     manager = HumanCommandManager()
     rospy.spin()
 

@@ -15,6 +15,8 @@ class ActionPlanner:
     def __init__(self):
 
         rospy.init_node('action_planner', anonymous=True)
+        rospy.loginfo("Action Planner: node started")
+
         self.current_step = ""
         self.prev_step=""        
 
@@ -139,6 +141,8 @@ class ActionPlanner:
         rospy.loginfo(f"Action sequence: {action_sequence_str}")
         try:
             self.action_sequence_client_to_command_monitor(request)
+            self.action_sequence_client_to_controller(request)
+            rospy.loginfo("Action sequence sent successfully")
         except rospy.ServiceException as e:
             rospy.logerr(f"Service call failed: {e}")
 

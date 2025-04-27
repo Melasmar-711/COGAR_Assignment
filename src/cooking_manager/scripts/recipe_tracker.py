@@ -85,5 +85,6 @@ class RecipeTracker:
 
 if __name__ == "__main__":
     rospy.init_node('recipe_tracker', log_level=rospy.DEBUG)
+    rospy.loginfo("Recipe Tracker Node Started")
     tracker = RecipeTracker()
     rospy.spin()
