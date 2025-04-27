@@ -92,7 +92,6 @@ class ActionPlanner:
         if self.valid_command != self.prev_valid_command:
             
             self.new_command_not_used = True
-            self.seq_interrupted=True
             self.prev_valid_command = self.valid_command
         
             rospy.loginfo(f"Valid command received: {self.valid_command}")
@@ -112,16 +111,15 @@ class ActionPlanner:
     def re_arrange_sequence(self,action_sequence,new_valid_cmd):
 
         # valid command inserting policy
-        # if the number of non urgent actions remaining in the action sequence is more than 50% or equal to of the remaining actions, insert the new command at the end of the sequence
+        # if the number of non urgent actions remaining in the action sequence is more than 10% or equal to of the remaining actions, insert the new command at the end of the sequence
         # otherwise insert it at the end of the current action sequence
         non_urgent_actions = [action for action in action_sequence[self.current_action_index:] if "not_urgent" in action]
 
         if len(non_urgent_actions) / len(action_sequence[self.current_action_index:]) >= 0.1:
-            if "not_urgent"in action_sequence[self.current_action_index +1]:
-                # Insert the new command at the end of the sequence
-                action_sequence.insert(self.current_action_index + 1, new_valid_cmd)
-            else:
-                action_sequence.append(new_valid_cmd)
+            if  self.current_action_index<=len(action_sequence):
+                self.currnet_actions_sequence.append(new_valid_cmd)
+
+        self.new_command_not_used = False        
 
 
 
@@ -137,12 +135,16 @@ class ActionPlanner:
         action_sequence_str = ','.join(self.currnet_actions_sequence)
 
         request.action_sequence = action_sequence_str
+        
         request.interrupted=self.seq_interrupted
+
         rospy.loginfo(f"Action sequence: {action_sequence_str}")
         try:
             self.action_sequence_client_to_command_monitor(request)
             self.action_sequence_client_to_controller(request)
             rospy.loginfo("Action sequence sent successfully")
+            self.seq_interrupted=False
+
         except rospy.ServiceException as e:
             rospy.logerr(f"Service call failed: {e}")
 
@@ -161,10 +163,10 @@ class ActionPlanner:
                 self.step_parsing(self.current_step)
                 if self.currnet_actions_sequence is not None:
                     # Check if the valid command is present
-                    if self.valid_command is not None :
+                    if self.valid_command is not None and self.new_command_not_used: 
                         # Re-arrange the sequence based on the valid command
                         self.re_arrange_sequence(self.currnet_actions_sequence, self.valid_command)
-
+                        rospy.loginfo(f"Re-arranged action sequence: {self.currnet_actions_sequence}")
                         self.seq_interrupted=True
                         self.new_command_not_used = False
                         
